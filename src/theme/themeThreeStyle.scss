@@ -1,0 +1,98 @@
+#audio5-player {
+
+    background: #1f2937;
+    /* bg-gray-800 */
+    border-radius: 12px;
+    padding: 16px;
+    width: 100%;
+    color: #fff;
+    margin-top: 14px;
+
+    .audio5-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 16px;
+    }
+
+    .audio5-title {
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+
+    .audio5-artist {
+        color: #9ca3af;
+        /* text-gray-400 */
+        font-size: 0.9rem;
+    }
+
+    .audio5-status {
+        background: #10b981;
+        /* green-500 */
+        color: #064e3b;
+        font-size: 0.75rem;
+        padding: 2px 8px;
+        border-radius: 6px;
+        font-weight: 600;
+        align-self: start;
+    }
+
+    .audio5-waveform {
+        display: flex;
+        align-items: flex-end;
+        height: 40px;
+        margin-bottom: 16px;
+    }
+
+    .audio5-wave-bar {
+        width: 3px;
+        margin-right: 1px;
+        border-radius: 2px;
+    }
+
+    .audio5-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .audio5-time {
+        font-size: 0.85rem;
+        color: #9ca3af;
+    }
+
+    .audio5-btns {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .play-btn {
+        width: 40px;
+        height: 40px;
+        background: #10b981;
+        color: #064e3b;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .icon-btn {
+        background: transparent;
+        color: #9ca3af;
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+
+    .icon-btn:hover {
+        color: #fff;
+    }
+
+    .audio5-volume {
+        color: #9ca3af;
+        display: flex;
+        align-items: center;
+    }
+
+
+}

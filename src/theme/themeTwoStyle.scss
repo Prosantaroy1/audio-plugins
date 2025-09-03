@@ -1,0 +1,126 @@
+#audio-player {
+
+    background: #000;
+    border: 1px solid #1f2937;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    gap: 16px;
+    width: 100%;
+    color: #fff;
+    margin-top: 10px;
+
+
+    .audio-cover {
+        width: 64px;
+        height: 64px;
+        background: #1f2937;
+        border-radius: 8px;
+        overflow: hidden;
+        flex-shrink: 0;
+    }
+
+    .cover-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .record-spinning {
+        animation: spin 5s linear infinite;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .audio-player-right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .audio-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+    }
+
+    .audio-title {
+        font-weight: 500;
+        margin: 0;
+    }
+
+    .audio-artist {
+        font-size: 12px;
+        color: #9ca3af;
+        margin: 0;
+    }
+
+    .audio-time {
+        font-size: 12px;
+        color: #9ca3af;
+    }
+
+    .progress-container {
+        height: 4px;
+        background: #1f2937;
+        border-radius: 4px;
+        margin-bottom: 12px;
+        overflow: hidden;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: #ef4444;
+        border-radius: 4px;
+        width: 0;
+    }
+
+    .audio-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .audio-btns {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .icon-btn {
+        background: none;
+        border: none;
+        color: #9ca3af;
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+
+    .icon-btn:hover {
+        color: #fff;
+    }
+
+    .play-btn {
+        width: 24px;
+        height: 24px;
+        background: #ef4444;
+        border-radius: 50%;
+        border: none;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .audio-volume {
+        color: #9ca3af;
+    }
+}

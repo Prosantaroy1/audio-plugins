@@ -1,0 +1,247 @@
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/style.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+.wp-block-b-blocks-audio-html-player {
+  box-sizing: border-box;
+}
+.wp-block-b-blocks-audio-html-player * {
+  box-sizing: border-box;
+}
+.wp-block-b-blocks-audio-html-player .bBlocksTestPurpose p {
+  padding: 10px;
+  border-radius: 10px;
+}
+.wp-block-b-blocks-audio-html-player .icon {
+  font-style: inherit;
+}
+.wp-block-b-blocks-audio-html-player img {
+  width: 100%;
+  max-width: 100%;
+}
+/*!**************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./src/theme/PlayerRating/PlayerRatingStyle.css ***!
+  \**************************************************************************************************************************************************************************************************/
+.player-rating {
+    margin-top: 16px;
+    /* mt-4 */
+    display: flex;
+    flex-direction: column;
+    /* flex-col */
+    gap: 8px;
+    /* gap-2 */
+    position: relative;
+    /* hover text position এর জন্য */
+}
+
+.player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.player-title {
+    font-weight: 500;
+    /* font-medium */
+    margin: 0;
+}
+
+.stars {
+    display: flex;
+    gap: 4px;
+}
+
+.star-btn {
+    padding: 4px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    /* hover text জন্য */
+}
+
+.star-btn svg {
+    width: 22px;
+    /* icon বড় করা */
+    height: 22px;
+    fill: #4b5563;
+    /* default gray */
+    transition: fill 0.2s ease, transform 0.2s ease;
+
+}
+
+.star-btn.active svg,
+.star-btn:hover svg {
+    fill: #facc15;
+    /* yellow on hover / active */
+    transform: scale(1.2);
+    /* hover এ icon বড় করা */
+}
+
+
+.star-btn .hover-text {
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    background: #111;
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.star-btn:hover .hover-text {
+    display: block;
+}
+
+.rating-text {
+    font-size: 12px;
+    /* text-xs */
+    text-align: right;
+    color: #9ca3af;
+    /* gray-400 */
+}
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./src/theme/themeOneStyle.css ***!
+  \*********************************************************************************************************************************************************************************/
+.audio-player-main {
+    /* border: 3px solid #2563eb;
+    border-radius: 12px; */
+    padding: 16px 16px 40px 16px;
+}
+
+.audio-player {
+    background: linear-gradient(to right, #1e3a8a, #2563eb);
+    /* from-blue-800 to-blue-600 */
+    border-radius: 12px;
+    padding: 16px;
+    width: 100%;
+    color: white;
+    font-family: sans-serif;
+}
+
+.audio-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.audio-title {
+    margin: 0;
+}
+
+.audio-artist {
+    margin: 0;
+}
+
+/* .audio-time {
+    font-size: 14px;
+    font-weight: 500;
+} */
+
+.progress-container {
+    margin-bottom: 16px;
+}
+
+.progress-bar {
+    height: 8px;
+    width: 100%;
+    background: #1e3a8a;
+    /* bg-blue-900 */
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: white;
+    width: 0%;
+    /* dynamic via JS */
+}
+
+.audio-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.control-btn {
+    padding: 8px;
+    color: #e1dad5;
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.control-btn svg {
+    width: 26px;
+    height: 26px;
+    fill: currentColor;
+}
+
+.control-btn:hover {
+    color: white;
+}
+
+.play-btn {
+    padding: 12px;
+    background: white;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: background 0.2s ease;
+}
+
+.play-btn:hover {
+    background: #dbeafe;
+}
+
+
+/* যদি SVG icon size control করতে চাও */
+.play-btn svg {
+    width: 26px;
+    /* icon width */
+    height: 26px;
+    /* icon height */
+    display: block;
+    /* remove inline spacing */
+}
+
+.volume-container {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    color: #bfdbfe;
+}
+
+.volume-bar {
+    width: 80px;
+    height: 4px;
+    background: #1e3a8a;
+    border-radius: 9999px;
+    margin-left: 8px;
+    position: relative;
+}
+
+.volume-fill {
+    height: 100%;
+    width: 66%;
+    /* Example */
+    background: #bfdbfe;
+    border-radius: 9999px;
+}
+
+/*# sourceMappingURL=view.css.map*/

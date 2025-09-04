@@ -1,7 +1,7 @@
 import { __ } from "@wordpress/i18n";
 import { PanelBody, TextControl, __experimentalNumberControl as NumberControl, SelectControl } from "@wordpress/components";
 import { themeOption } from "../../../../utils/options";
-import { updateData } from "../../../../utils/functions";
+import { themeSwitch, updateData } from "../../../../utils/functions";
 import { IconLibrary, } from '../../../../../../bpl-tools/Components';
 
 const General = ({ attributes, setAttributes }) => {
@@ -18,9 +18,7 @@ const General = ({ attributes, setAttributes }) => {
           labelPosition="left"
           value={theme}
           options={themeOption}
-          onChange={(v) => setAttributes({
-
-          })}
+          onChange={(value) => setAttributes(themeSwitch(value, attributes))}
         />
       </PanelBody>
       <PanelBody className='bPlPanelBody' title={__('Audio Content Change', 'b-blocks')} initialOpen={false}>

@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import './style.scss';
 import Style from './Components/Common/Style';
-import ThemeOne from './theme/themeOne';
+import AudioPlayer from './theme/themeSwitch/ThemeSwitch';
 //import ShowPurpose from './Components/Common/ShowPurpose';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			<Style attributes={attributes} id={blockNameEl.id} />
 
 			{/* <ShowPurpose attributes={attributes} /> */}
-			<ThemeOne />
+			<AudioPlayer {...{ attributes }} />
 
 		</>);
 

@@ -7,6 +7,431 @@ $primaryColor: #4527a4;
 		box-sizing: border-box;
 	}
 
+
+	.audioPlayerWrapper {
+		.audioPlayerOne {
+			.audio-player {
+				background: linear-gradient(to right, #1e3a8a, #2563eb);
+				/* from-blue-800 to-blue-600 */
+				border-radius: 12px;
+				padding: 16px;
+				width: 100%;
+				color: white;
+				font-family: sans-serif;
+			}
+
+			.audio-header {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				margin-bottom: 16px;
+			}
+
+			.audio-title {
+				margin: 0;
+			}
+
+			.audio-artist {
+				margin-top: 10px;
+			}
+
+			// progress-container
+
+			.progress-container {
+				margin-bottom: 16px;
+			}
+
+			.progress-bar {
+				height: 8px;
+				width: 100%;
+				background: #1e3a8a;
+				/* bg-blue-900 */
+				border-radius: 9999px;
+				overflow: hidden;
+			}
+
+			.progress-fill {
+				height: 100%;
+				background: white;
+				width: 0%;
+				/* dynamic via JS */
+			}
+
+			//controls
+			.audio-controls {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			.control-btn {
+				padding: 8px;
+				color: #e1dad5;
+				background: transparent;
+				border: none;
+				font-size: 18px;
+				cursor: pointer;
+			}
+
+			.control-btn svg {
+				width: 26px;
+				height: 26px;
+				fill: currentColor;
+			}
+
+			.control-btn:hover {
+				color: white;
+			}
+
+			.play-btn {
+				padding: 12px;
+				background: white;
+				border-radius: 50%;
+				border: none;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 20px;
+				transition: background 0.2s ease;
+			}
+
+			.play-btn:hover {
+				background: #dbeafe;
+			}
+
+
+			/* যদি SVG icon size control করতে চাও */
+			.play-btn svg {
+				width: 26px;
+				/* icon width */
+				height: 26px;
+				/* icon height */
+				display: block;
+				/* remove inline spacing */
+			}
+
+			.volume-container {
+				display: flex;
+				align-items: center;
+				font-size: 18px;
+				color: #bfdbfe;
+			}
+
+			.volume-bar {
+				width: 80px;
+				height: 4px;
+				background: #1e3a8a;
+				border-radius: 9999px;
+				margin-left: 8px;
+				position: relative;
+			}
+
+			.volume-fill {
+				height: 100%;
+				width: 66%;
+				/* Example */
+				background: #bfdbfe;
+				border-radius: 9999px;
+			}
+		}
+
+		.audioPlayerTwo {
+			.audio-player {
+
+				background: #000;
+				border: 1px solid #1f2937;
+				border-radius: 8px;
+				padding: 16px;
+				display: flex;
+				gap: 16px;
+				width: 100%;
+				color: #fff;
+				margin-top: 10px;
+
+
+				.audio-cover {
+					width: 64px;
+					height: 64px;
+					background: #1f2937;
+					border-radius: 8px;
+					overflow: hidden;
+					flex-shrink: 0;
+				}
+
+				.cover-img {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+				}
+
+				.record-spinning {
+					animation: spin 5s linear infinite;
+				}
+
+				@keyframes spin {
+					from {
+						transform: rotate(0deg);
+					}
+
+					to {
+						transform: rotate(360deg);
+					}
+				}
+
+				.audio-player-right {
+					flex: 1;
+					display: flex;
+					flex-direction: column;
+				}
+
+				.audio-header {
+					display: flex;
+					justify-content: space-between;
+					margin-bottom: 8px;
+				}
+
+				.audio-title {
+					font-weight: 500;
+					margin: 0;
+				}
+
+				.audio-artist {
+					font-size: 12px;
+					color: #9ca3af;
+					margin-top: 10px;
+				}
+
+				.audio-time {
+					font-size: 12px;
+					color: #9ca3af;
+				}
+
+				//------------progress--------------
+
+				.progress-container {
+					margin-bottom: 16px;
+				}
+
+				.progress-bar {
+					height: 8px;
+					width: 100%;
+					background: #1e3a8a;
+					/* bg-blue-900 */
+					border-radius: 9999px;
+					overflow: hidden;
+				}
+
+				.progress-fill {
+					height: 100%;
+					background: white;
+					width: 0%;
+					/* dynamic via JS */
+				}
+
+				//-------progress----------------
+
+				// .audio-controls {
+				// 	display: flex;
+				// 	justify-content: space-between;
+				// 	align-items: center;
+				// }
+
+				.audio-btns {
+					display: flex;
+					gap: 8px;
+					align-items: center;
+				}
+
+				// .icon-btn {
+				// 	background: none;
+				// 	border: none;
+				// 	color: #9ca3af;
+				// 	cursor: pointer;
+				// 	transition: color 0.2s;
+				// }
+
+				// .icon-btn:hover {
+				// 	color: #fff;
+				// }
+
+
+
+
+				.audio-controls {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+				}
+
+				.control-btn {
+					padding: 8px;
+					color: #e1dad5;
+					background: transparent;
+					border: none;
+					font-size: 18px;
+					cursor: pointer;
+				}
+
+				.control-btn svg {
+					width: 26px;
+					height: 26px;
+					fill: currentColor;
+				}
+
+				.control-btn:hover {
+					color: white;
+				}
+
+
+				.play-btn {
+					width: 28px;
+					height: 28px;
+					background: #ef4444;
+					border-radius: 50%;
+					border: none;
+					color: #fff;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					cursor: pointer;
+				}
+
+				.audio-volume {
+					color: #9ca3af;
+				}
+			}
+		}
+
+		.audioPlayerThree {
+			.audio-player {
+
+				background: #1f2937;
+				/* bg-gray-800 */
+				border-radius: 12px;
+				padding: 16px;
+				width: 100%;
+				color: #fff;
+				margin-top: 14px;
+
+				.audio-header {
+					display: flex;
+					justify-content: space-between;
+					margin-bottom: 7px;
+				}
+
+				.audio-title {
+					font-weight: bold;
+					font-size: 1.1rem;
+				}
+
+				.audio-artist {
+					color: #9ca3af;
+					/* text-gray-400 */
+					font-size: 0.9rem;
+				}
+
+				.audio-time {
+					background: #10b981;
+					/* green-500 */
+					color: #064e3b;
+					font-size: 0.75rem;
+					padding: 2px 8px;
+					border-radius: 6px;
+					font-weight: 600;
+					align-self: start;
+				}
+
+				.audio5-waveform {
+					display: flex;
+					align-items: flex-end;
+					height: 40px;
+					margin-bottom: 16px;
+				}
+
+				.audio5-wave-bar {
+					width: 3px;
+					margin-right: 1px;
+					border-radius: 2px;
+				}
+
+				.audio5-controls {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+				}
+
+				.audio5-time {
+					font-size: 0.85rem;
+					color: #9ca3af;
+				}
+
+				.audio-controls {
+					display: flex;
+					align-items: center;
+					gap: 12px;
+				}
+
+				.control-btn {
+					padding: 8px;
+					color: #e1dad5;
+					background: transparent;
+					border: none;
+					font-size: 18px;
+					cursor: pointer;
+				}
+
+				.control-btn svg {
+					width: 26px;
+					height: 26px;
+					fill: currentColor;
+				}
+
+				.control-btn:hover {
+					color: white;
+				}
+
+				// .audio5-btns {
+				// 	display: flex;
+				// 	align-items: center;
+				// 	gap: 12px;
+				// }
+
+				.play-btn {
+					width: 40px;
+					height: 40px;
+					background: #10b981;
+					color: #064e3b;
+					border-radius: 50%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+
+				// .icon-btn {
+				// 	background: transparent;
+				// 	color: #9ca3af;
+				// 	cursor: pointer;
+				// 	transition: color 0.2s;
+				// }
+
+				// .icon-btn:hover {
+				// 	color: #fff;
+				// }
+
+				.audio5-volume {
+					color: #9ca3af;
+					display: flex;
+					align-items: center;
+				}
+
+
+			}
+		}
+	}
+
+
+
 	.bBlocksTestPurpose {
 		p {
 			padding: 10px;

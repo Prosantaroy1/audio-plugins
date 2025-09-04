@@ -1,9 +1,3 @@
-.audio-player-main {
-    /* border: 3px solid #2563eb;
-    border-radius: 12px; */
-    padding: 16px 16px 40px 16px;
-}
-
 .audio-player {
     background: linear-gradient(to right, #1e3a8a, #2563eb);
     /* from-blue-800 to-blue-600 */

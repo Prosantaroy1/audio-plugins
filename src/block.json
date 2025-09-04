@@ -39,7 +39,13 @@
 			"default": {
 				"audioContainerDiv": {
 					"bg": {
-						"color": "linear-gradient(to right, #1e3a8a, #2563eb"
+						"color": ""
+					},
+					"padding": {
+						"top": "18px",
+						"left": "18px",
+						"bottom": "18px",
+						"right": "18px"
 					}
 				},
 				"headingtitle": {

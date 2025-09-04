@@ -11,7 +11,7 @@ const Style = ({ attributes, setAttributes }) => {
 
   //const { Bar, Fill } = progressStyle;
 
-  console.log('div bg', audioContainerDiv?.bg)
+  console.log('div padding', Style?.audioContainerDiv?.padding)
 
   return (
     <>
@@ -21,6 +21,13 @@ const Style = ({ attributes, setAttributes }) => {
           value={audioContainerDiv?.bg}
           onChange={(v) => setAttributes({
             Styles: updateData(Styles, v, 'audioContainerDiv', 'bg')
+          })}
+        />
+        <BoxControl
+          label='Padding'
+          values={audioContainerDiv?.padding}
+          onChange={(v) => setAttributes({
+            Styles: updateData(Styles, v, 'audioContainerDiv', 'padding')
           })}
         />
       </PanelBody>

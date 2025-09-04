@@ -1,5 +1,5 @@
-import PlayerRating from './PlayerRating/PlayerRating';
-import "./themeThreeStyle.scss";
+//import PlayerRating from './PlayerRating/PlayerRating';
+//import "./themeThreeStyle.scss";
 
 export default function ThemeThree({ attributes }) {
     const { audioData = {} } = attributes;
@@ -36,15 +36,22 @@ export default function ThemeThree({ attributes }) {
     };
 
     return (
-        <div className="audio-player-main">
-            <div id="audio5-player">
+        <div className="audio-player-main audioPlayerThree">
+            <div className="audio-player">
                 {/* Header */}
-                <div className="audio5-header">
+                {/* <div className="audio5-header">
                     <div>
                         <h3 className="audio5-title">{audioData.title}</h3>
                         <p className="audio5-artist">{audioData.artist}</p>
                     </div>
                     <div className="audio5-status">PLAYING</div>
+                </div> */}
+                <div className="audio-header">
+                    <div>
+                        <h3 className="audio-title">{audioData.title}</h3>
+                        <p className="audio-artist">{audioData.artist}</p>
+                    </div>
+                    <div className="audio-time">PLAYING</div>
                 </div>
 
                 {/* Waveform */}
@@ -63,31 +70,29 @@ export default function ThemeThree({ attributes }) {
                 </div>
 
                 {/* Controls */}
-                <div className="audio5-controls">
+                <div className="audio5-controls" >
                     {/* Time */}
                     <div className="audio5-time">{formatTime(65)}</div>
 
                     {/* Buttons */}
-                    <div className="audio5-btns">
+                    <div className="audio-controls">
                         <button
-                            className="icon-btn"
+                            className="control-btn"
                             dangerouslySetInnerHTML={{ __html: audioData.prevIcon }}
                         />
                         <button
                             className="play-btn"
-                            dangerouslySetInnerHTML={{ __html: audioData.audioOpenIcon }}
+                            dangerouslySetInnerHTML={{ __html: audioData.audioOffIcon }}
                         />
                         <button
-                            className="icon-btn"
+                            className="control-btn"
                             dangerouslySetInnerHTML={{ __html: audioData.nextIcon }}
                         />
                     </div>
 
                     {/* Volume */}
                     <div className="audio5-volume">
-                        <span
-                            dangerouslySetInnerHTML={{ __html: audioData.audioOffIcon }}
-                        />
+                        🔊
                     </div>
                 </div>
             </div>

@@ -43,6 +43,7 @@ const Style = ({ attributes, id }) => {
 			
 			${audioDivSl}{
 			  ${getBackgroundCSS(audioContainerDiv?.bg)}
+			  padding: ${getBoxCSS(audioContainerDiv?.padding)};
 			}
 
 			${audioTitleSl}{

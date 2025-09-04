@@ -1,5 +1,5 @@
-import PlayerRating from './PlayerRating/PlayerRating';
-import "./themeTwoStyle.scss";
+//import PlayerRating from './PlayerRating/PlayerRating';
+////import "./themeTwoStyle.scss";
 
 export default function ThemeTwo({ attributes }) {
     const { audioData = {} } = attributes;
@@ -23,8 +23,8 @@ export default function ThemeTwo({ attributes }) {
     };
 
     return (
-        <div className="audio-player-main">
-            <div id="audio-player">
+        <div className="audio-player-main audioPlayerTwo">
+            <div className="audio-player">
                 {/* Left: Cover */}
                 <div className="audio-player-left">
                     <div className="audio-cover">
@@ -52,12 +52,9 @@ export default function ThemeTwo({ attributes }) {
                         <div className="progress-bar">
                             <div
                                 className="progress-fill"
-                                style={{
-                                    width: `${audioData.duration ? (30 / audioData.duration) * 100 : 0}%`,
-                                }}
+                                style={{ width: `${(120 / 200) * 100}%` }}
                             ></div>
                         </div>
-
                     </div>
 
                     {/* Controls */}
@@ -65,19 +62,19 @@ export default function ThemeTwo({ attributes }) {
                         <div className="audio-btns">
                             {/* Prev Button (custom SVG from attributes) */}
                             <button
-                                className="icon-btn"
+                                className="control-btn"
                                 dangerouslySetInnerHTML={{ __html: audioData.prevIcon }}
                             />
 
                             {/* Play Button (toggle করার জন্য default open icon) */}
                             <button
                                 className="play-btn"
-                                dangerouslySetInnerHTML={{ __html: audioData.audioOpenIcon }}
+                                dangerouslySetInnerHTML={{ __html: audioData.audioOffIcon }}
                             />
 
                             {/* Next Button */}
                             <button
-                                className="icon-btn"
+                                className="control-btn"
                                 dangerouslySetInnerHTML={{ __html: audioData.nextIcon }}
                             />
                         </div>
@@ -85,8 +82,10 @@ export default function ThemeTwo({ attributes }) {
                         {/* Volume Icon */}
                         <div
                             className="audio-volume"
-                            dangerouslySetInnerHTML={{ __html: audioData.audioOffIcon }}
-                        />
+                        // dangerouslySetInnerHTML={{ __html: audioData.audioOffIcon }}
+                        >
+                            🔊
+                        </div>
                     </div>
                 </div>
             </div>

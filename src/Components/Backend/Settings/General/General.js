@@ -13,7 +13,7 @@ const General = ({ attributes, setAttributes }) => {
 
   return (
     <>
-      <PanelBody className='bPlPanelBody' title={__('Theme Change', 'b-blocks')} initialOpen={false}>
+      <PanelBody className='bPlPanelBody' title={__('Theme Change', 'b-blocks')} initialOpen={true}>
         <SelectControl
           labelPosition="left"
           value={theme}

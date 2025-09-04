@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import PlayerRating from "./PlayerRating/PlayerRating";
-import "./themeOneStyle.css";
+//import "./themeOneStyle.css";
 
 const ThemeOne = ({
     currentTime,
@@ -68,7 +68,7 @@ const ThemeOne = ({
     };
 
     return (
-        <div className="audio-player-main">
+        <div className="audio-player-main audioPlayerOne">
             <div className="audio-player">
                 {/* Header */}
                 <div className="audio-header">

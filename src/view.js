@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client';
 import './style.scss';
 import Style from './Components/Common/Style';
 import AudioPlayer from './theme/themeSwitch/ThemeSwitch';
+
 //import ShowPurpose from './Components/Common/ShowPurpose';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,7 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			<Style attributes={attributes} id={blockNameEl.id} />
 
 			{/* <ShowPurpose attributes={attributes} /> */}
-			<AudioPlayer {...{ attributes }} />
+			<div className='audioPlayerWrapper'>
+				<AudioPlayer {...{ attributes }} />
+			</div>
 
 		</>);
 

@@ -42,10 +42,10 @@
 						"color": ""
 					},
 					"padding": {
-						"top": "18px",
-						"left": "18px",
-						"bottom": "18px",
-						"right": "18px"
+						"top": "22px",
+						"left": "22px",
+						"bottom": "22px",
+						"right": "22px"
 					}
 				},
 				"headingtitle": {
@@ -62,7 +62,7 @@
 							"tablet": 16,
 							"mobile": 12
 						},
-						"lineHeight": 1,
+						"lineHeight": 1.2,
 						"fontFamily": "Montserrat, sans-serif"
 					},
 					"colors": "white"

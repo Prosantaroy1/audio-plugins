@@ -100,15 +100,11 @@ $primaryColor: #4527a4;
 				background: #dbeafe;
 			}
 
-
-			/* যদি SVG icon size control করতে চাও */
 			.play-btn svg {
-				width: 26px;
-				/* icon width */
-				height: 26px;
-				/* icon height */
+				width: 22px;
+				height: 22px;
 				display: block;
-				/* remove inline spacing */
+				color: #104bb9;
 			}
 
 			.volume-container {
@@ -130,7 +126,6 @@ $primaryColor: #4527a4;
 			.volume-fill {
 				height: 100%;
 				width: 66%;
-				/* Example */
 				background: #bfdbfe;
 				border-radius: 9999px;
 			}
@@ -285,8 +280,8 @@ $primaryColor: #4527a4;
 
 
 				.play-btn {
-					width: 28px;
-					height: 28px;
+					width: 34px;
+					height: 34px;
 					background: #ef4444;
 					border-radius: 50%;
 					border: none;
@@ -295,6 +290,11 @@ $primaryColor: #4527a4;
 					align-items: center;
 					justify-content: center;
 					cursor: pointer;
+				}
+
+				.play-btn svg {
+					width: 18px;
+					height: 18px;
 				}
 
 				.audio-volume {
@@ -382,8 +382,8 @@ $primaryColor: #4527a4;
 				}
 
 				.control-btn svg {
-					width: 26px;
-					height: 26px;
+					width: 30px;
+					height: 30px;
 					fill: currentColor;
 				}
 
@@ -406,6 +406,11 @@ $primaryColor: #4527a4;
 					display: flex;
 					justify-content: center;
 					align-items: center;
+				}
+
+				.play-btn svg {
+					width: 20px;
+					height: 20px;
 				}
 
 				// .icon-btn {

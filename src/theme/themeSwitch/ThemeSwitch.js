@@ -1,35 +1,26 @@
-import ThemeOne from '../themeOne';
+import ThemeOne from '../ThemeOne';
+import ThemeTwo from '../ThemeTwo';
 import ThemeThree from '../ThemeThree';
-import ThemeTwo from '../themeTwo';
+
 
 const AudioPlayer = ({ attributes, setAttributes }) => {
-    const { theme } = attributes;
+    const { theme = 'themeOne' } = attributes;
 
-    const obj = {
-        'themeOne': ThemeOne,
-        'themeTwo': ThemeTwo,
-        'themeThree': ThemeThree
-    }
-
-    const SelectTheme = obj[theme] || ThemeOne;
-
-    // let content;
-    // switch (theme) {
-
-    //     case "themeTwo":
-    //         content = <ThemeTwo attributes={attributes} setAttributes={setAttributes} />;
-    //         break;
-
-    //     case "themeThree":
-    //         content = <ThemeThree attributes={attributes} setAttributes={setAttributes} />;
-    //         break;
-
-    //     default:
-    //         content = <ThemeOne attributes={attributes} setAttributes={setAttributes} />;
-    //         break;
-    // }
-
-    return <SelectTheme {...{ attributes, setAttributes }} />;
+    return <ThemeSwitch theme={theme} {...{ attributes, setAttributes }} />;
 }
 
 export default AudioPlayer;
+
+
+const ThemeSwitch = ({ theme, attributes, setAttributes }) => {
+    switch (theme) {
+        case 'themeTwo':
+            return <ThemeTwo {...{ attributes, setAttributes }} />
+        case 'themeThree':
+            return <ThemeThree {...{ attributes, setAttributes }} />;
+
+        default:
+            return <ThemeOne {...{ attributes, setAttributes }} />;
+
+    }
+}

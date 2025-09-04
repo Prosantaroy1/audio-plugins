@@ -1,14 +1,10 @@
-import React, { useRef, useState } from "react";
-import PlayerRating from "./PlayerRating/PlayerRating";
-//import "./themeOneStyle.css";
+import { useRef, useState } from "react";
+
 
 const ThemeOne = ({
     currentTime,
-    duration,
     isPlaying,
-    togglePlay,
     attributes,
-    setAttributes
 }) => {
     const { audioData = {} } = attributes;
 
@@ -18,8 +14,6 @@ const ThemeOne = ({
         duration: audioDuration = 0,
         prevIcon = "",
         nextIcon = "",
-        audioFileName = "Play 1",
-        ratingIcon = "",
         audioOffIcon = "▶",
         audioOpenIcon = "⏸",
         audioFile = ""

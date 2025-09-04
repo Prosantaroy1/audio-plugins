@@ -294,10 +294,10 @@ const Style = ({
 
 /***/ }),
 
-/***/ "./src/theme/PlayerRating/PlayerRating.js":
-/*!************************************************!*\
-  !*** ./src/theme/PlayerRating/PlayerRating.js ***!
-  \************************************************/
+/***/ "./src/theme/ThemeOne.js":
+/*!*******************************!*\
+  !*** ./src/theme/ThemeOne.js ***!
+  \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -306,42 +306,108 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _PlayerRatingStyle_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PlayerRatingStyle.css */ "./src/theme/PlayerRating/PlayerRatingStyle.css");
 
 
-
-const PlayerRating = ({
-  index,
-  icon,
-  audioFileName
+const ThemeOne = ({
+  currentTime,
+  isPlaying,
+  attributes
 }) => {
-  const [rating, setRating] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
-  const handleRate = star => {
-    setRating(star);
+  const {
+    audioData = {}
+  } = attributes;
+  const {
+    title = "It All Began With a Burst",
+    artist = "Proshanto Roy",
+    duration: audioDuration = 0,
+    prevIcon = "",
+    nextIcon = "",
+    audioOffIcon = "▶",
+    audioOpenIcon = "⏸",
+    audioFile = ""
+  } = audioData;
+  const audioRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const [playerTime, setPlayerTime] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(currentTime || 0);
+  const [playerPlaying, setPlayerPlaying] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(isPlaying || false);
+  const formatTime = time => {
+    if (!time || isNaN(time)) return "0:00";
+    const hours = Math.floor(time / 3600);
+    const minutes = Math.floor(time % 3600 / 60);
+    const seconds = Math.floor(time % 60).toString().padStart(2, "0");
+    if (hours > 0) {
+      return `${hours}:${minutes.toString().padStart(2, "0")}:${seconds}`;
+    } else {
+      return `${minutes}:${seconds}`;
+    }
+  };
+  const handleTogglePlay = () => {
+    if (!audioRef.current) return;
+    if (playerPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setPlayerPlaying(!playerPlaying);
+  };
+  const handleTimeUpdate = () => {
+    if (audioRef.current) setPlayerTime(audioRef.current.currentTime);
+  };
+  const handleRate = (index, star) => {
+    console.log(star);
   };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "player-rating"
+    className: "audio-player-main audioPlayerOne"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "player-header"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
-    className: "player-title"
-  }, audioFileName || `Player ${index + 1}`), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "stars"
-  }, [1, 2, 3, 4, 5].map(star => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    key: star,
-    onClick: e => {
-      e.stopPropagation();
-      handleRate(star);
-    },
-    className: `star-btn ${rating >= star ? "active" : ""}`,
-    dangerouslySetInnerHTML: {
-      __html: icon // svg string render
+    className: "audio-player"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "audio-header"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
+    className: "audio-title"
+  }, title), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "audio-artist"
+  }, artist)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "audio-time"
+  }, formatTime(playerTime), " / ", formatTime(audioDuration))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "progress-container"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "progress-bar"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "progress-fill",
+    style: {
+      width: `${120 / 200 * 100}%`
     }
-  })))), rating > 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "rating-text"
-  }, "Rated ", rating, "/5"));
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "audio-controls"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    className: "control-btn",
+    dangerouslySetInnerHTML: {
+      __html: prevIcon
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    className: "play-btn",
+    onClick: handleTogglePlay,
+    dangerouslySetInnerHTML: {
+      __html: playerPlaying ? audioOpenIcon : audioOffIcon
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    className: "control-btn",
+    dangerouslySetInnerHTML: {
+      __html: nextIcon
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "volume-container"
+  }, "\uD83D\uDD0A", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "volume-bar"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "volume-fill"
+  }))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("audio", {
+    ref: audioRef,
+    src: audioFile,
+    onTimeUpdate: handleTimeUpdate,
+    onEnded: () => setPlayerPlaying(false)
+  }));
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PlayerRating);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ThemeOne);
 
 /***/ }),
 
@@ -442,193 +508,9 @@ function ThemeThree({
 
 /***/ }),
 
-/***/ "./src/theme/themeOne.js":
+/***/ "./src/theme/ThemeTwo.js":
 /*!*******************************!*\
-  !*** ./src/theme/themeOne.js ***!
-  \*******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _PlayerRating_PlayerRating__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PlayerRating/PlayerRating */ "./src/theme/PlayerRating/PlayerRating.js");
-
-
-
-//import "./themeOneStyle.css";
-
-const ThemeOne = ({
-  currentTime,
-  duration,
-  isPlaying,
-  togglePlay,
-  attributes,
-  setAttributes
-}) => {
-  const {
-    audioData = {}
-  } = attributes;
-  const {
-    title = "It All Began With a Burst",
-    artist = "Proshanto Roy",
-    duration: audioDuration = 0,
-    prevIcon = "",
-    nextIcon = "",
-    audioFileName = "Play 1",
-    ratingIcon = "",
-    audioOffIcon = "▶",
-    audioOpenIcon = "⏸",
-    audioFile = ""
-  } = audioData;
-  const audioRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  const [playerTime, setPlayerTime] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(currentTime || 0);
-  const [playerPlaying, setPlayerPlaying] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(isPlaying || false);
-  const formatTime = time => {
-    if (!time || isNaN(time)) return "0:00";
-    const hours = Math.floor(time / 3600);
-    const minutes = Math.floor(time % 3600 / 60);
-    const seconds = Math.floor(time % 60).toString().padStart(2, "0");
-    if (hours > 0) {
-      return `${hours}:${minutes.toString().padStart(2, "0")}:${seconds}`;
-    } else {
-      return `${minutes}:${seconds}`;
-    }
-  };
-  const handleTogglePlay = () => {
-    if (!audioRef.current) return;
-    if (playerPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play();
-    }
-    setPlayerPlaying(!playerPlaying);
-  };
-  const handleTimeUpdate = () => {
-    if (audioRef.current) setPlayerTime(audioRef.current.currentTime);
-  };
-  const handleRate = (index, star) => {
-    console.log(star);
-  };
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "audio-player-main audioPlayerOne"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "audio-player"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "audio-header"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
-    className: "audio-title"
-  }, title), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    className: "audio-artist"
-  }, artist)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    className: "audio-time"
-  }, formatTime(playerTime), " / ", formatTime(audioDuration))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "progress-container"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "progress-bar"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "progress-fill",
-    style: {
-      width: `${120 / 200 * 100}%`
-    }
-  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "audio-controls"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: "control-btn",
-    dangerouslySetInnerHTML: {
-      __html: prevIcon
-    }
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: "play-btn",
-    onClick: handleTogglePlay,
-    dangerouslySetInnerHTML: {
-      __html: playerPlaying ? audioOpenIcon : audioOffIcon
-    }
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: "control-btn",
-    dangerouslySetInnerHTML: {
-      __html: nextIcon
-    }
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "volume-container"
-  }, "\uD83D\uDD0A", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "volume-bar"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "volume-fill"
-  }))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("audio", {
-    ref: audioRef,
-    src: audioFile,
-    onTimeUpdate: handleTimeUpdate,
-    onEnded: () => setPlayerPlaying(false)
-  }));
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ThemeOne);
-
-/***/ }),
-
-/***/ "./src/theme/themeSwitch/ThemeSwitch.js":
-/*!**********************************************!*\
-  !*** ./src/theme/themeSwitch/ThemeSwitch.js ***!
-  \**********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _themeOne__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../themeOne */ "./src/theme/themeOne.js");
-/* harmony import */ var _ThemeThree__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ThemeThree */ "./src/theme/ThemeThree.js");
-/* harmony import */ var _themeTwo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../themeTwo */ "./src/theme/themeTwo.js");
-
-
-
-
-const AudioPlayer = ({
-  attributes,
-  setAttributes
-}) => {
-  const {
-    theme
-  } = attributes;
-  const obj = {
-    'themeOne': _themeOne__WEBPACK_IMPORTED_MODULE_1__["default"],
-    'themeTwo': _themeTwo__WEBPACK_IMPORTED_MODULE_3__["default"],
-    'themeThree': _ThemeThree__WEBPACK_IMPORTED_MODULE_2__["default"]
-  };
-  const SelectTheme = obj[theme] || _themeOne__WEBPACK_IMPORTED_MODULE_1__["default"];
-
-  // let content;
-  // switch (theme) {
-
-  //     case "themeTwo":
-  //         content = <ThemeTwo attributes={attributes} setAttributes={setAttributes} />;
-  //         break;
-
-  //     case "themeThree":
-  //         content = <ThemeThree attributes={attributes} setAttributes={setAttributes} />;
-  //         break;
-
-  //     default:
-  //         content = <ThemeOne attributes={attributes} setAttributes={setAttributes} />;
-  //         break;
-  // }
-
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(SelectTheme, {
-    attributes,
-    setAttributes
-  });
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AudioPlayer);
-
-/***/ }),
-
-/***/ "./src/theme/themeTwo.js":
-/*!*******************************!*\
-  !*** ./src/theme/themeTwo.js ***!
+  !*** ./src/theme/ThemeTwo.js ***!
   \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -718,6 +600,65 @@ function ThemeTwo({
     // dangerouslySetInnerHTML={{ __html: audioData.audioOffIcon }}
   }, "\uD83D\uDD0A")))));
 }
+
+/***/ }),
+
+/***/ "./src/theme/themeSwitch/ThemeSwitch.js":
+/*!**********************************************!*\
+  !*** ./src/theme/themeSwitch/ThemeSwitch.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _ThemeOne__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../ThemeOne */ "./src/theme/ThemeOne.js");
+/* harmony import */ var _ThemeTwo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ThemeTwo */ "./src/theme/ThemeTwo.js");
+/* harmony import */ var _ThemeThree__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ThemeThree */ "./src/theme/ThemeThree.js");
+
+
+
+
+const AudioPlayer = ({
+  attributes,
+  setAttributes
+}) => {
+  const {
+    theme = 'themeOne'
+  } = attributes;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(ThemeSwitch, {
+    theme: theme,
+    attributes,
+    setAttributes
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AudioPlayer);
+const ThemeSwitch = ({
+  theme,
+  attributes,
+  setAttributes
+}) => {
+  switch (theme) {
+    case 'themeTwo':
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ThemeTwo__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        attributes,
+        setAttributes
+      });
+    case 'themeThree':
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ThemeThree__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        attributes,
+        setAttributes
+      });
+    default:
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ThemeOne__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        attributes,
+        setAttributes
+      });
+  }
+};
 
 /***/ }),
 
@@ -1364,18 +1305,6 @@ const getMaskCSS = mask => {
 			${isValidCSS('-webkit-mask-position-y', position.y)}` : `${isValidCSS('-webkit-mask-position', position.type)}`}
 		${size.type !== 'cover' ? `-webkit-mask-repeat: ${repeat};` : ''}` : '';
 };
-
-/***/ }),
-
-/***/ "./src/theme/PlayerRating/PlayerRatingStyle.css":
-/*!******************************************************!*\
-  !*** ./src/theme/PlayerRating/PlayerRatingStyle.css ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
 
 /***/ }),
 

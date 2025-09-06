@@ -5,18 +5,18 @@ export default function ThemeThree({ attributes }) {
     const { audioData = {} } = attributes;
 
 
-    const {
-        title = "It All Began With a Burst",
-        artist = "Proshanto Roy",
-        duration: audioDuration = 0,
-        prevIcon = "",
-        nextIcon = "",
-        audioFileName = "Play 1",
-        ratingIcon = "",
-        audioOffIcon = "▶",
-        audioOpenIcon = "⏸",
-        audioFile = ""
-    } = audioData;
+    // const {
+    //     title = "It All Began With a Burst",
+    //     artist = "Proshanto Roy",
+    //     duration: audioDuration = 0,
+    //     prevIcon = "",
+    //     nextIcon = "",
+    //     audioFileName = "Play 1",
+    //     ratingIcon = "",
+    //     audioOffIcon = "▶",
+    //     audioOpenIcon = "⏸",
+    //     audioFile = ""
+    // } = audioData;
 
     const generateWaveform = () => {
         return Array(50).fill(0).map(() => Math.random() * 30 + 5);
@@ -31,9 +31,9 @@ export default function ThemeThree({ attributes }) {
         return `${minutes}:${seconds}`;
     };
 
-    const handleRate = (index, star) => {
-        console.log(star)
-    };
+    // const handleRate = (index, star) => {
+    //     console.log(star)
+    // };
 
     return (
         <div className="audio-player-main audioPlayerThree">

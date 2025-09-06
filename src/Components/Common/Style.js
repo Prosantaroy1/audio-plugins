@@ -42,9 +42,10 @@ const Style = ({ attributes, id }) => {
 			${getTypoCSS(playerTitleSl, playerStyle?.playerTitle?.typo).styles}
 			
 			${audioDivSl}{
-			  ${getBackgroundCSS(audioContainerDiv?.bg)}
-			  padding: ${getBoxCSS(audioContainerDiv?.padding)};
+			   padding: ${getBoxCSS(audioContainerDiv?.padding)};
+			   ${getBackgroundCSS(audioContainerDiv?.bg?.color)}
 			}
+			
 
 			${audioTitleSl}{
 			  color: ${headingtitle?.colors};

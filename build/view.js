@@ -252,9 +252,10 @@ const Style = ({
 			${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(playerTitleSl, playerStyle?.playerTitle?.typo).styles}
 			
 			${audioDivSl}{
-			  ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBackgroundCSS)(audioContainerDiv?.bg)}
-			  padding: ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(audioContainerDiv?.padding)};
+			   padding: ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(audioContainerDiv?.padding)};
+			   ${(0,_bpl_tools_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBackgroundCSS)(audioContainerDiv?.bg?.color)}
 			}
+			
 
 			${audioTitleSl}{
 			  color: ${headingtitle?.colors};
@@ -352,9 +353,11 @@ const ThemeOne = ({
   const handleTimeUpdate = () => {
     if (audioRef.current) setPlayerTime(audioRef.current.currentTime);
   };
-  const handleRate = (index, star) => {
-    console.log(star);
-  };
+
+  // const handleRate = (index, star) => {
+  //     console.log(star)
+  // };
+
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "audio-player-main audioPlayerOne"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -433,18 +436,20 @@ function ThemeThree({
   const {
     audioData = {}
   } = attributes;
-  const {
-    title = "It All Began With a Burst",
-    artist = "Proshanto Roy",
-    duration: audioDuration = 0,
-    prevIcon = "",
-    nextIcon = "",
-    audioFileName = "Play 1",
-    ratingIcon = "",
-    audioOffIcon = "▶",
-    audioOpenIcon = "⏸",
-    audioFile = ""
-  } = audioData;
+
+  // const {
+  //     title = "It All Began With a Burst",
+  //     artist = "Proshanto Roy",
+  //     duration: audioDuration = 0,
+  //     prevIcon = "",
+  //     nextIcon = "",
+  //     audioFileName = "Play 1",
+  //     ratingIcon = "",
+  //     audioOffIcon = "▶",
+  //     audioOpenIcon = "⏸",
+  //     audioFile = ""
+  // } = audioData;
+
   const generateWaveform = () => {
     return Array(50).fill(0).map(() => Math.random() * 30 + 5);
   };
@@ -455,9 +460,11 @@ function ThemeThree({
     const seconds = String(Math.floor(time % 60)).padStart(2, "0");
     return `${minutes}:${seconds}`;
   };
-  const handleRate = (index, star) => {
-    console.log(star);
-  };
+
+  // const handleRate = (index, star) => {
+  //     console.log(star)
+  // };
+
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "audio-player-main audioPlayerThree"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -530,21 +537,6 @@ function ThemeTwo({
   const {
     audioData = {}
   } = attributes;
-  const {
-    title = "It All Began With a Burst",
-    artist = "Proshanto Roy",
-    duration: audioDuration = 0,
-    prevIcon = "",
-    nextIcon = "",
-    audioFileName = "Play 1",
-    ratingIcon = "",
-    audioOffIcon = "▶",
-    audioOpenIcon = "⏸",
-    audioFile = ""
-  } = audioData;
-  const handleRate = (index, star) => {
-    console.log(star);
-  };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "audio-player-main audioPlayerTwo"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {

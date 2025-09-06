@@ -3,12 +3,13 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
 import { TabPanel } from '@wordpress/components';
 import { tabController } from '../../../../../bpl-tools/utils/functions';
-import { generalStyleTabs } from '../../../utils/options';
+import { blocks, generalStyleTabs } from '../../../utils/options';
 import General from './General/General';
 import Style from './Style/Style';
+import { BplBlockPreview } from '../../../../../bpl-tools/Components';
 
-const Settings = ({ attributes, setAttributes }) => {
-	const { alignment } = attributes;
+const Settings = ({ attributes, setAttributes, clientId }) => {
+	const { alignment, theme } = attributes;
 
 	return <>
 		<InspectorControls>
@@ -35,6 +36,12 @@ const Settings = ({ attributes, setAttributes }) => {
 				{ title: __('Block Name in center', 'textdomain'), align: 'center', icon: 'align-center' },
 				{ title: __('Block Name in right', 'textdomain'), align: 'right', icon: 'align-right' }
 			]} />
+			<BplBlockPreview
+				blocks={blocks}
+				clientId={clientId}
+				value={theme}
+				minWidth="450px"
+			/>
 
 		</BlockControls>
 	</>;

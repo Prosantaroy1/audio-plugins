@@ -16,22 +16,22 @@
   color: white;
   font-family: sans-serif;
 }
-.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .audio-header {
+.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .audio-player .audio-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 16px;
 }
-.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .audio-title {
+.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .audio-player .audio-title {
   margin: 0;
 }
-.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .audio-artist {
+.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .audio-player .audio-artist {
   margin-top: 10px;
 }
-.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .progress-container {
+.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .audio-player .progress-container {
   margin-bottom: 16px;
 }
-.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .progress-bar {
+.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .audio-player .progress-bar {
   height: 8px;
   width: 100%;
   background: #1e3a8a;
@@ -39,18 +39,18 @@
   border-radius: 9999px;
   overflow: hidden;
 }
-.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .progress-fill {
+.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .audio-player .progress-fill {
   height: 100%;
   background: white;
   width: 0%;
   /* dynamic via JS */
 }
-.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .audio-controls {
+.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .audio-player .audio-controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .control-btn {
+.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .audio-player .control-btn {
   padding: 8px;
   color: #e1dad5;
   background: transparent;
@@ -58,15 +58,15 @@
   font-size: 18px;
   cursor: pointer;
 }
-.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .control-btn svg {
+.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .audio-player .control-btn svg {
   width: 26px;
   height: 26px;
   fill: currentColor;
 }
-.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .control-btn:hover {
+.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .audio-player .control-btn:hover {
   color: white;
 }
-.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .play-btn {
+.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .audio-player .play-btn {
   padding: 12px;
   background: white;
   border-radius: 50%;
@@ -78,22 +78,22 @@
   font-size: 20px;
   transition: background 0.2s ease;
 }
-.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .play-btn:hover {
+.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .audio-player .play-btn:hover {
   background: #dbeafe;
 }
-.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .play-btn svg {
+.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .audio-player .play-btn svg {
   width: 22px;
   height: 22px;
   display: block;
   color: #104bb9;
 }
-.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .volume-container {
+.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .audio-player .volume-container {
   display: flex;
   align-items: center;
   font-size: 18px;
   color: #bfdbfe;
 }
-.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .volume-bar {
+.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .audio-player .volume-bar {
   width: 80px;
   height: 4px;
   background: #1e3a8a;
@@ -101,7 +101,7 @@
   margin-left: 8px;
   position: relative;
 }
-.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .volume-fill {
+.wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .audio-player .volume-fill {
   height: 100%;
   width: 66%;
   background: #bfdbfe;

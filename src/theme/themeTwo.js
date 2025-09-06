@@ -4,24 +4,6 @@
 export default function ThemeTwo({ attributes }) {
     const { audioData = {} } = attributes;
 
-    const {
-        title = "It All Began With a Burst",
-        artist = "Proshanto Roy",
-        duration: audioDuration = 0,
-        prevIcon = "",
-        nextIcon = "",
-        audioFileName = "Play 1",
-        ratingIcon = "",
-        audioOffIcon = "▶",
-        audioOpenIcon = "⏸",
-        audioFile = ""
-    } = audioData;
-
-
-    const handleRate = (index, star) => {
-        console.log(star)
-    };
-
     return (
         <div className="audio-player-main audioPlayerTwo">
             <div className="audio-player">

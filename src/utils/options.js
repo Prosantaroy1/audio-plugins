@@ -5,9 +5,28 @@ export const generalStyleTabs = [
 	{ name: 'style', title: __('Style', 'textdomain') }
 ];
 export const themeOption = [
-	{ label: "Default", value: "themeOne" },
+	{ label: "ThemeOne", value: "themeOne" },
 	{ label: "ThemeTwo", value: "themeTwo" },
 	{ label: "ThemeThree", value: "themeThree" }
 ];
+
+
+export const blocks = [
+	{
+		label: 'ThemeOne',
+		value: 'themeOne',
+		content: `<!-- wp:b-blocks/audio-html-player /-->`
+	},
+	{
+		label: 'ThemeTwo',
+		value: 'themeTwo',
+		content: `<!-- wp:b-blocks/audio-html-player {"theme":"themeTwo","Styles":{"audioContainerDiv":{"bg":{"color":"linear-gradient(to right, #1e3a8a, #2563eb"},"padding":{"top":"18px","left":"18px","bottom":"18px","right":"18px"}},"headingtitle":{"margin":{"top":"0px","left":"0px","bottom":"5px","right":"0px"},"typo":{"fontWeight":700,"fontSize":{"desktop":20,"tablet":16,"mobile":12},"lineHeight":1,"fontFamily":"Montserrat, sans-serif"},"colors":"white"},"actorNames":{"margin":{"top":"3px","left":"0px","bottom":"0px","right":"0px"},"typo":{"fontWeight":700,"fontSize":{"desktop":14,"tablet":12,"mobile":10},"lineHeight":1,"fontFamily":"Montserrat, sans-serif"},"colors":"white"},"audioTime":{"color":"white","typo":{"fontWeight":600,"fontSize":{"desktop":14,"tablet":12,"mobile":10},"lineHeight":1,"fontFamily":"Montserrat, sans-serif"}},"progressStyle":{"Bar":{"color":"#1e3a8a"},"Fill":{"color":"white"}},"controlBtn":{"color":"#e1dad5","width":"26px","height":"26px"},"playerStyle":{"playerTitle":{"color":"black","margin":{"top":"0px","left":"0px","bottom":"0px","right":"0px"},"typo":{"fontWeight":500,"fontSize":{"desktop":20,"tablet":16,"mobile":12},"lineHeight":1,"fontFamily":"Montserrat, sans-serif"}},"ratingIcon":{"width":"26px","height":"26px"}}}} /-->`
+	},
+	{
+		label: 'ThemeThree',
+		value: 'themeThree',
+		content: `<!-- wp:b-blocks/audio-html-player {"theme":"themeThree","Styles":{"audioContainerDiv":{"bg":{"color":"linear-gradient(to right, #1e3a8a, #2563eb"},"padding":{"top":"18px","left":"18px","bottom":"18px","right":"18px"}},"headingtitle":{"margin":{"top":"0px","left":"0px","bottom":"5px","right":"0px"},"typo":{"fontWeight":700,"fontSize":{"desktop":20,"tablet":16,"mobile":12},"lineHeight":1,"fontFamily":"Montserrat, sans-serif"},"colors":"white"},"actorNames":{"margin":{"top":"3px","left":"0px","bottom":"0px","right":"0px"},"typo":{"fontWeight":700,"fontSize":{"desktop":14,"tablet":12,"mobile":10},"lineHeight":1,"fontFamily":"Montserrat, sans-serif"},"colors":"white"},"audioTime":{"color":"white","typo":{"fontWeight":600,"fontSize":{"desktop":14,"tablet":12,"mobile":10},"lineHeight":1,"fontFamily":"Montserrat, sans-serif"}},"progressStyle":{"Bar":{"color":"#1e3a8a"},"Fill":{"color":"white"}},"controlBtn":{"color":"#e1dad5","width":"26px","height":"26px"},"playerStyle":{"playerTitle":{"color":"black","margin":{"top":"0px","left":"0px","bottom":"0px","right":"0px"},"typo":{"fontWeight":500,"fontSize":{"desktop":20,"tablet":16,"mobile":12},"lineHeight":1,"fontFamily":"Montserrat, sans-serif"}},"ratingIcon":{"width":"26px","height":"26px"}}}} /-->`
+	}
+]
 
 

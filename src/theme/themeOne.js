@@ -57,13 +57,13 @@ const ThemeOne = ({
     };
 
 
-    const handleRate = (index, star) => {
-        console.log(star)
-    };
+    // const handleRate = (index, star) => {
+    //     console.log(star)
+    // };
 
     return (
         <div className="audio-player-main audioPlayerOne">
-            <div className="audio-player">
+            <div className="audio-player" >
                 {/* Header */}
                 <div className="audio-header">
                     <div>

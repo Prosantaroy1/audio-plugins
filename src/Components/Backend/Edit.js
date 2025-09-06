@@ -8,7 +8,7 @@ const Edit = (props) => {
 
   return (
     <>
-      <Settings {...{ attributes, setAttributes }} />
+      <Settings {...{ attributes, setAttributes }} clientId={clientId} />
 
       <div {...useBlockProps()}>
         <Style attributes={attributes} id={`block-${clientId}`} />

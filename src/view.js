@@ -3,7 +3,6 @@ import './style.scss';
 import Style from './Components/Common/Style';
 import AudioPlayer from './theme/themeSwitch/ThemeSwitch';
 
-//import ShowPurpose from './Components/Common/ShowPurpose';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const blockNameEls = document.querySelectorAll('.wp-block-b-blocks-audio-html-player');
@@ -13,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		createRoot(blockNameEl).render(<>
 			<Style attributes={attributes} id={blockNameEl.id} />
 
-			{/* <ShowPurpose attributes={attributes} /> */}
+
 			<div className='audioPlayerWrapper'>
 				<AudioPlayer {...{ attributes }} />
 			</div>

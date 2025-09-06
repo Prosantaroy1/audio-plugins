@@ -1,13 +1,9 @@
 .player-rating {
     margin-top: 16px;
-    /* mt-4 */
     display: flex;
     flex-direction: column;
-    /* flex-col */
     gap: 8px;
-    /* gap-2 */
     position: relative;
-    /* hover text position এর জন্য */
 }
 
 .player-header {
@@ -32,21 +28,17 @@
     border: none;
     background: transparent;
     cursor: pointer;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     position: relative;
-    /* hover text জন্য */
+
 }
 
 .star-btn svg {
     width: 22px;
-    /* icon বড় করা */
     height: 22px;
     fill: #4b5563;
-    /* default gray */
     transition: fill 0.2s ease, transform 0.2s ease;
 
 }
@@ -54,9 +46,7 @@
 .star-btn.active svg,
 .star-btn:hover svg {
     fill: #facc15;
-    /* yellow on hover / active */
     transform: scale(1.2);
-    /* hover এ icon বড় করা */
 }
 
 

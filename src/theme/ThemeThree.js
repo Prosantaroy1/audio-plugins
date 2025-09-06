@@ -1,22 +1,8 @@
-//import PlayerRating from './PlayerRating/PlayerRating';
-//import "./themeThreeStyle.scss";
 
 export default function ThemeThree({ attributes }) {
     const { audioData = {} } = attributes;
 
 
-    // const {
-    //     title = "It All Began With a Burst",
-    //     artist = "Proshanto Roy",
-    //     duration: audioDuration = 0,
-    //     prevIcon = "",
-    //     nextIcon = "",
-    //     audioFileName = "Play 1",
-    //     ratingIcon = "",
-    //     audioOffIcon = "▶",
-    //     audioOpenIcon = "⏸",
-    //     audioFile = ""
-    // } = audioData;
 
     const generateWaveform = () => {
         return Array(50).fill(0).map(() => Math.random() * 30 + 5);
@@ -31,21 +17,11 @@ export default function ThemeThree({ attributes }) {
         return `${minutes}:${seconds}`;
     };
 
-    // const handleRate = (index, star) => {
-    //     console.log(star)
-    // };
 
     return (
         <div className="audio-player-main audioPlayerThree">
             <div className="audio-player">
-                {/* Header */}
-                {/* <div className="audio5-header">
-                    <div>
-                        <h3 className="audio5-title">{audioData.title}</h3>
-                        <p className="audio5-artist">{audioData.artist}</p>
-                    </div>
-                    <div className="audio5-status">PLAYING</div>
-                </div> */}
+
                 <div className="audio-header">
                     <div>
                         <h3 className="audio-title">{audioData.title}</h3>

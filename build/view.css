@@ -43,7 +43,6 @@
   height: 100%;
   background: white;
   width: 0%;
-  /* dynamic via JS */
 }
 .wp-block-b-blocks-audio-html-player .audioPlayerWrapper .audioPlayerOne .audio-player .audio-controls {
   display: flex;

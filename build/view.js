@@ -353,11 +353,6 @@ const ThemeOne = ({
   const handleTimeUpdate = () => {
     if (audioRef.current) setPlayerTime(audioRef.current.currentTime);
   };
-
-  // const handleRate = (index, star) => {
-  //     console.log(star)
-  // };
-
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "audio-player-main audioPlayerOne"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -427,29 +422,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-//import PlayerRating from './PlayerRating/PlayerRating';
-//import "./themeThreeStyle.scss";
-
 function ThemeThree({
   attributes
 }) {
   const {
     audioData = {}
   } = attributes;
-
-  // const {
-  //     title = "It All Began With a Burst",
-  //     artist = "Proshanto Roy",
-  //     duration: audioDuration = 0,
-  //     prevIcon = "",
-  //     nextIcon = "",
-  //     audioFileName = "Play 1",
-  //     ratingIcon = "",
-  //     audioOffIcon = "▶",
-  //     audioOpenIcon = "⏸",
-  //     audioFile = ""
-  // } = audioData;
-
   const generateWaveform = () => {
     return Array(50).fill(0).map(() => Math.random() * 30 + 5);
   };
@@ -460,11 +438,6 @@ function ThemeThree({
     const seconds = String(Math.floor(time % 60)).padStart(2, "0");
     return `${minutes}:${seconds}`;
   };
-
-  // const handleRate = (index, star) => {
-  //     console.log(star)
-  // };
-
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "audio-player-main audioPlayerThree"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -527,9 +500,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-//import PlayerRating from './PlayerRating/PlayerRating';
-////import "./themeTwoStyle.scss";
 
 function ThemeTwo({
   attributes
@@ -1447,9 +1417,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-//import ShowPurpose from './Components/Common/ShowPurpose';
 
 document.addEventListener('DOMContentLoaded', () => {
   const blockNameEls = document.querySelectorAll('.wp-block-b-blocks-audio-html-player');

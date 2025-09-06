@@ -1,5 +1,4 @@
-//import PlayerRating from './PlayerRating/PlayerRating';
-////import "./themeTwoStyle.scss";
+
 
 export default function ThemeTwo({ attributes }) {
     const { audioData = {} } = attributes;

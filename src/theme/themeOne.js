@@ -57,9 +57,6 @@ const ThemeOne = ({
     };
 
 
-    // const handleRate = (index, star) => {
-    //     console.log(star)
-    // };
 
     return (
         <div className="audio-player-main audioPlayerOne">

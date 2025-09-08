@@ -26,9 +26,11 @@ if (!class_exists('AudioPPPlugin')) {
 		function __construct()
 		{
 			add_action('init', [$this, 'onInit'], 5);
+			add_shortcode('book', [$this, 'psb_product_spotshortcode']);
 			add_filter('manage_book_posts_columns', [$this, 'set_custom_edit_book_columns']);
-			add_action('manage_book_posts_custom_column', [$this, 'custom_book_column'], 10, 2);
-			add_shortcode('highlight', [$this, 'my_highlight_shortcode']);
+			add_action('manage_book_posts_custom_column', [$this, 'psb_ManageCustomColumns'], 10, 2);
+			add_action('admin_enqueue_scripts', [$this, 'psb_admin_enqueue_script']);
+			//add_shortcode('highlight', [$this, 'my_highlight_shortcode']);
 		}
 
 		function onInit()
@@ -99,53 +101,125 @@ if (!class_exists('AudioPPPlugin')) {
 		}
 		function set_custom_edit_book_columns($columns)
 		{
-			$columns['book_author'] = __('Author', 'b-blocks');
+			unset($columns['date']);
+			$columns['shortcode'] = 'ShortCode';
+			$columns['date'] = 'Date';
 			$columns['publisher'] = __('Publisher', 'b-blocks');
-			$columns['view'] = __('View', 'b-blocks');
 
 			return $columns;
 		}
-		function custom_book_column($column, $post_id)
+
+		function psb_ManageCustomColumns($column_name, $post_id)
 		{
-			switch ($column) {
-
-				case 'book_author':
-					$terms = get_the_term_list($post_id, 'book_author', '', ',', '');
-					if (is_string($terms))
-						echo $terms;
-					else
-						_e('Unable to get author(s)', 'b-blocks');
-					break;
-
-				case 'publisher':
-					echo get_post_meta($post_id, 'publisher', true);
-					break;
-				case 'view':
-					echo '<a href="' . get_permalink($post_id) . '" target="_blank">' . __('View', 'b-blocks') . '</a>';
-					break;
+			if ($column_name == 'shortcode') {
+				echo '<div class="bPlAdminShortcode" id="bPlAdminShortcode-' . esc_attr($post_id) . '">
+						<input value="[book id=' . esc_attr($post_id) . ']" onclick="copyBPlAdminShortcode(\'' . esc_attr($post_id) . '\')" readonly>
+						<span class="tooltip">Copy To Clipboard</span>
+					  </div>';
+			}
+			if ($column_name == 'publisher') {
+				echo 'Prosanta Roy';
 			}
 		}
 
-		// Highlight Shortcode
-		function my_highlight_shortcode($atts = [], $content = null)
+		function psb_product_spotshortcode($atts)
 		{
-			$atts = shortcode_atts(
-				array(
-					'color' => 'red', // ডিফল্টে ফাঁকা
-				),
-				$atts,
-				'highlight'
-			);
+			$post_id = $atts['id'];
+			$post = get_post($post_id);
 
-			// Nested shortcode সাপোর্ট দিবে
-			$content = do_shortcode($content);
+			if (!$post) {
+				return '';
+			}
 
-			// যদি title থাকে তবে attribute বানাবে
-			$title_attr = $atts['color'] ? ' color="' . esc_attr($atts['color']) . '"' : 'red';
+			if (post_password_required($post)) {
+				return get_the_password_form($post);
+			}
 
-			// HTML return
-			return '<span' . $title_attr . ' style="background:yellow; padding:2px 4px;">' . esc_html($content) . '</span>';
+			switch ($post->post_status) {
+				case 'publish':
+					return $this->displayContent($post);
+
+				case 'private':
+					if (current_user_can('read_private_posts')) {
+						return $this->displayContent($post);
+					}
+					return '';
+
+				case 'draft':
+				case 'pending':
+				case 'future':
+					if (current_user_can('edit_post', $post_id)) {
+						return $this->displayContent($post);
+					}
+					return '';
+
+				default:
+					return '';
+			}
 		}
+
+		function displayContent($post)
+		{
+			$blocks = parse_blocks($post->post_content);
+			return render_block($blocks[0]);
+		}
+
+		function psb_admin_enqueue_script(){
+			global $typenow;
+			
+			if ('book' === $typenow) {
+				wp_enqueue_script( 'shortcode-js', AudioPP_DIR_URL . './build/shortcode.js', [], AudioPP_VERSION, true );
+				wp_enqueue_style( 'shortcode-css', AudioPP_DIR_URL . './build/shortcode.css', AudioPP_VERSION );
+				
+			}
+		}
+
+
+
+
+
+
+		// function custom_book_column($column, $post_id)
+		// {
+		// 	switch ($column) {
+
+		// 		case 'book_author':
+		// 			$terms = get_the_term_list($post_id, 'book_author', '', ',', '');
+		// 			if (is_string($terms))
+		// 				echo $terms;
+		// 			else
+		// 				_e('Unable to get author(s)', 'b-blocks');
+		// 			break;
+
+		// 		case 'publisher':
+		// 			echo get_post_meta($post_id, 'publisher', true);
+		// 			break;
+		// 		case 'view':
+		// 			echo '<a href="' . get_permalink($post_id) . '" target="_blank">' . __('View', 'b-blocks') . '</a>';
+		// 			break;
+		// 	}
+		// }
+
+		// Highlight Shortcode
+		// function my_highlight_shortcode($atts = [], $content = null)
+		// {
+		// 	$atts = shortcode_atts(
+		// 		array(
+		// 			'color' => 'red', // ডিফল্টে ফাঁকা
+		// 		),
+		// 		$atts,
+		// 		'highlight'
+		// 	);
+
+		// 	// Nested shortcode সাপোর্ট দিবে
+		// 	$content = do_shortcode($content);
+
+		// 	// যদি title থাকে তবে attribute বানাবে
+		// 	$title_attr = $atts['color'] ? ' color="' . esc_attr($atts['color']) . '"' : 'red';
+
+		// 	// HTML return
+		// 	return '<span' . $title_attr . ' style="background:yellow; padding:2px 4px;">' . esc_html($content) . '</span>';
+		// }
 
 
 

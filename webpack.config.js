@@ -10,6 +10,10 @@ const plugins = defaultConfig.plugins.filter(p => {
 
 module.exports = {
 	...defaultConfig,
+	entry: {
+		...defaultConfig.entry(),
+		shortcode: "./src/shortcode/shortcode.js"
+	},
 	plugins: [
 		...plugins,
 		new ESLintPlugin()

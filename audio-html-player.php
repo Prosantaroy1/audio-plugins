@@ -124,6 +124,7 @@ if (!class_exists('AudioPPPlugin')) {
 
 		function psb_product_spotshortcode($atts)
 		{
+
 			$post_id = $atts['id'];
 			$post = get_post($post_id);
 

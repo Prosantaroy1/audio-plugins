@@ -31,6 +31,8 @@ if (!class_exists('AudioPPPlugin')) {
 			add_action('manage_book_posts_custom_column', [$this, 'psb_ManageCustomColumns'], 10, 2);
 			add_action('admin_enqueue_scripts', [$this, 'psb_admin_enqueue_script']);
 			//add_shortcode('highlight', [$this, 'my_highlight_shortcode']);
+			
+
 		}
 
 		function onInit()
@@ -95,6 +97,32 @@ if (!class_exists('AudioPPPlugin')) {
 				'show_admin_column' => false,
 				'show_in_rest' => true,
 			]);
+			register_taxonomy('Setting', 'book', [
+				'label' => __('Setting', 'b-blocks'),
+				'public' => true,
+				'hierarchical' => false,
+				'show_admin_column' => false,
+				'show_in_rest' => true,
+			]);
+			register_taxonomy('Get help', 'book', [
+				'label' => __('Get help', 'b-blocks'),
+				'public' => true,
+				'hierarchical' => false,
+				'show_admin_column' => false,
+				'show_in_rest' => true,
+			]);
+		
+			register_taxonomy('Others Plugin', 'book', [
+				'label' => __('Others Plugin', 'b-blocks'),
+				'public' => true,
+				'hierarchical' => false,
+				'show_admin_column' => false,
+				'show_in_rest' => true,
+			]);
+		
+
+
+
 
 
 
@@ -165,13 +193,14 @@ if (!class_exists('AudioPPPlugin')) {
 			return render_block($blocks[0]);
 		}
 
-		function psb_admin_enqueue_script(){
+		function psb_admin_enqueue_script()
+		{
 			global $typenow;
-			
+
 			if ('book' === $typenow) {
-				wp_enqueue_script( 'shortcode-js', AudioPP_DIR_URL . './build/shortcode.js', [], AudioPP_VERSION, true );
-				wp_enqueue_style( 'shortcode-css', AudioPP_DIR_URL . './build/shortcode.css', AudioPP_VERSION );
-				
+				wp_enqueue_script('shortcode-js', AudioPP_DIR_URL . './build/shortcode.js', [], AudioPP_VERSION, true);
+				wp_enqueue_style('shortcode-css', AudioPP_DIR_URL . './build/shortcode.css', AudioPP_VERSION);
+
 			}
 		}
 

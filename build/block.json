@@ -9,7 +9,7 @@
   "keywords": [
     "Audio Html Player"
   ],
-  "textdomain": "b-blocks",
+  "textdomain": "audio-html-player",
   "attributes": {
     "alignment": {
       "type": "string",
@@ -150,7 +150,11 @@
   "example": {
     "attributes": {}
   },
-  "editorScript": "file:./index.js",
+  "editorScript": [
+    "file:./index.js",
+    "wp-api",
+    "wp-utils"
+  ],
   "editorStyle": "file:./index.css",
   "style": "file:./view.css",
   "render": "file:./render.php",

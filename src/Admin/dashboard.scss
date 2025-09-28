@@ -1,0 +1,6 @@
+@import "../../../bpl-tools/Admin/style.scss";
+
+.bPlDashboardPricing .plans .plan.bestValue::before {
+    content: " " !important;
+    background-color: transparent !important;
+}

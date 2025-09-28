@@ -635,6 +635,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   escapeHTML: () => (/* binding */ escapeHTML),
 /* harmony export */   isExist: () => (/* binding */ isExist),
 /* harmony export */   sanitizeHTML: () => (/* binding */ sanitizeHTML),
+/* harmony export */   sanitizeInput: () => (/* binding */ sanitizeInput),
 /* harmony export */   sanitizeURL: () => (/* binding */ sanitizeURL)
 /* harmony export */ });
 const isExist = value => {
@@ -721,8 +722,8 @@ const sanitizeHTML = input => {
         node.removeAttribute(attr.name);
       }
 
-      // if (attr.name === "href" && attr.value.trim().toLowerCase().startsWith("javascript:")) {
-      // 	node.removeAttribute("href");
+      // if (attr.name === 'href' && attr.value.trim().toLowerCase().startsWith('javascript:')) {
+      // 	node.removeAttribute('href');
       // }
 
       if (attr.name === 'href') {
@@ -737,6 +738,9 @@ const sanitizeHTML = input => {
   });
   return doc.body.innerHTML;
 };
+const sanitizeInput = input => {
+  return input.replace(/[<>]/g, '').replace(/javascript:/gi, '').replace(/on\w+=/gi, '').trim();
+};
 
 /***/ }),
 
@@ -748,13 +752,43 @@ const sanitizeHTML = input => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   contentColor: () => (/* binding */ contentColor),
 /* harmony export */   deskBreakpoint: () => (/* binding */ deskBreakpoint),
+/* harmony export */   gradient: () => (/* binding */ gradient),
 /* harmony export */   mobileBreakpoint: () => (/* binding */ mobileBreakpoint),
-/* harmony export */   tabBreakpoint: () => (/* binding */ tabBreakpoint)
+/* harmony export */   primaryColor: () => (/* binding */ primaryColor),
+/* harmony export */   primaryColor100: () => (/* binding */ primaryColor100),
+/* harmony export */   primaryColor1000: () => (/* binding */ primaryColor1000),
+/* harmony export */   primaryColor200: () => (/* binding */ primaryColor200),
+/* harmony export */   primaryColor300: () => (/* binding */ primaryColor300),
+/* harmony export */   primaryColor400: () => (/* binding */ primaryColor400),
+/* harmony export */   primaryColor500: () => (/* binding */ primaryColor500),
+/* harmony export */   primaryColor600: () => (/* binding */ primaryColor600),
+/* harmony export */   primaryColor700: () => (/* binding */ primaryColor700),
+/* harmony export */   primaryColor800: () => (/* binding */ primaryColor800),
+/* harmony export */   primaryColor900: () => (/* binding */ primaryColor900),
+/* harmony export */   secondaryColor: () => (/* binding */ secondaryColor),
+/* harmony export */   tabBreakpoint: () => (/* binding */ tabBreakpoint),
+/* harmony export */   titleColor: () => (/* binding */ titleColor)
 /* harmony export */ });
 const deskBreakpoint = '@media only screen and (min-width: 1025px)';
 const tabBreakpoint = '@media only screen and (max-width: 1024px)';
 const mobileBreakpoint = '@media only screen and (max-width: 640px)';
+const primaryColor = '#146EF5';
+const primaryColor100 = '#e7f0fe';
+const primaryColor200 = '#b6d2fc';
+const primaryColor300 = '#85b4fa';
+const primaryColor400 = '#5495f8';
+const primaryColor500 = '#2377f6';
+const primaryColor600 = '#095edc';
+const primaryColor700 = '#0749ab';
+const primaryColor800 = '#05347a';
+const primaryColor900 = '#031f49';
+const primaryColor1000 = '#010a18';
+const secondaryColor = '#FF7A00';
+const titleColor = '#070127';
+const contentColor = '#485781';
+const gradient = 'linear-gradient(135deg, #0040E3, #18D4FD)';
 
 /***/ }),
 
@@ -790,8 +824,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_Mask_assets_shapes_hexagon_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Components/Mask/assets/shapes/hexagon.svg */ "../bpl-tools/Components/Mask/assets/shapes/hexagon.svg");
 /* harmony import */ var _Components_Mask_assets_shapes_sketch_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Components/Mask/assets/shapes/sketch.svg */ "../bpl-tools/Components/Mask/assets/shapes/sketch.svg");
 /* harmony import */ var _Components_Mask_assets_shapes_triangle_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Components/Mask/assets/shapes/triangle.svg */ "../bpl-tools/Components/Mask/assets/shapes/triangle.svg");
-/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./data */ "../bpl-tools/utils/data.js");
-/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./common */ "../bpl-tools/utils/common.js");
+/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./common */ "../bpl-tools/utils/common.js");
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./data */ "../bpl-tools/utils/data.js");
 
 
 
@@ -800,14 +834,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const isValidCSS = (p, v) => (0,_common__WEBPACK_IMPORTED_MODULE_7__.isExist)(v) ? `${p}: ${v};` : '';
+const isValidCSS = (p, v) => (0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(v) ? `${p}: ${v};` : '';
 const getBackgroundCSS = (bg, isSolid = true, isGradient = true, isImage = true) => {
   const {
     type = 'solid',
     color = '',
-    gradient = '',
+    gradient = _data__WEBPACK_IMPORTED_MODULE_7__.gradient,
     image = {},
-    position = '',
+    position = 'center center',
     attachment = '',
     repeat = '',
     size = '',
@@ -822,25 +856,23 @@ const getBackgroundCSS = (bg, isSolid = true, isGradient = true, isImage = true)
 				${isValidCSS('background-repeat', repeat)}
 				background-blend-mode: overlay;` : isSolid && isValidCSS('background', color);
   return styles;
-}; // PHP version in Stepped Content
-
+};
 const getBorderCSS = border => {
   const {
-    width = '0px',
+    width = '',
     style = 'solid',
     color = '',
     side = 'all',
-    radius = '0px'
+    radius = ''
   } = border || {};
   const borderSideCheck = s => {
     const bSide = side?.toLowerCase();
     return bSide?.includes('all') || bSide?.includes(s);
   };
-  const noWidth = width === '0px' || !width;
   const borderCSS = `${width} ${style} ${color}`;
   const styles = `
-		${noWidth ? '' : ['top', 'right', 'bottom', 'left'].map(side => borderSideCheck(side) ? `border-${side}: ${borderCSS};` : '').join('')}
-		${!radius ? '' : `border-radius: ${radius};`}
+		${!width || parseInt(width) === 0 ? '' : ['top', 'right', 'bottom', 'left'].map(side => borderSideCheck(side) ? `border-${side}: ${borderCSS};` : '').join('')}
+		${isValidCSS('border-radius', radius)}
 	`;
   return styles;
 };
@@ -866,13 +898,13 @@ const getBorderBoxCSS = border => {
 };
 const getColorsCSS = colors => {
   const {
-    color = '#333',
+    color = '',
     bgType = 'solid',
     bg = '',
-    gradient = 'linear-gradient(135deg, #4527a4, #8344c5)'
+    gradient = _data__WEBPACK_IMPORTED_MODULE_7__.gradient
   } = colors || {};
   const styles = `
-		${color ? `color: ${color};` : ''}
+		${isValidCSS('color', color)}
 		${gradient || bg ? isValidCSS('background', 'gradient' === bgType ? gradient : bg) : ''}
 	`;
   return styles;
@@ -882,7 +914,7 @@ const getIconCSS = (icon, isSize = true, isColor = true) => {
     fontSize = 16,
     colorType = 'solid',
     color = 'inherit',
-    gradient = 'linear-gradient(135deg, #4527a4, #8344c5)'
+    gradient = _data__WEBPACK_IMPORTED_MODULE_7__.gradient
   } = icon || {};
   const colorCSS = 'gradient' === colorType ? `color: transparent; background-image: ${gradient}; -webkit-background-clip: text; background-clip: text;` : isValidCSS('color', color);
   const styles = `
@@ -899,7 +931,7 @@ const getMultiShadowCSS = (value, type = 'box') => {
       vOffset = '0px',
       blur = '0px',
       spreed = '0px',
-      color = '#7090b0',
+      color = '#e7f0fe',
       isInset = false
     } = item || {};
     const inset = isInset ? 'inset' : '';
@@ -907,18 +939,18 @@ const getMultiShadowCSS = (value, type = 'box') => {
     const isComa = index + 1 >= value.length ? '' : ', ';
     styles += 'text' === type ? `${offsetBlur} ${color}${isComa}` : `${offsetBlur} ${spreed} ${color} ${inset}${isComa}`;
   });
-  return styles || 'none';
+  return styles || '';
 };
 const getSeparatorCSS = separator => {
   const {
     width = '50%',
     height = '2px',
     style = 'solid',
-    color = '#bbb'
+    color = _data__WEBPACK_IMPORTED_MODULE_7__.primaryColor300
   } = separator || {};
   const styles = `
-		width: ${width};
-		${'0px' === height && '0em' === height && '0rem' === height ? '' : `border-top: ${height} ${style} ${color};`}
+		${isValidCSS('width', width)}
+		${0 === parseInt(height) ? '' : `border-top: ${height} ${style} ${color};`}
 	`;
   return styles;
 };
@@ -954,27 +986,37 @@ const getTypoCSS = (selector, typo, isFamily = true) => {
     fontFamily = 'Default',
     fontCategory = 'sans-serif',
     fontVariant = 400,
-    fontWeight = 400,
+    fontWeight,
     isUploadFont = true,
     fontSize = {
-      desktop: 15,
-      tablet: 15,
-      mobile: 15
+      desktop: null,
+      tablet: null,
+      mobile: null
     },
-    fontStyle = 'normal',
-    textTransform = 'none',
-    textDecoration = 'auto',
-    lineHeight = '135%',
-    letterSpace = '0px'
+    fontStyle,
+    textTransform,
+    textDecoration,
+    lineHeight,
+    letterSpace
   } = typo || {};
   const isEmptyFamily = !isFamily || !fontFamily || 'Default' === fontFamily;
   const desktopFontSize = fontSize?.desktop || fontSize;
   const tabletFontSize = fontSize?.tablet || desktopFontSize;
   const mobileFontSize = fontSize?.mobile || tabletFontSize;
+  const checkUnit = size => {
+    const value = String(size);
+    const units = ['px', 'em', 'rem', '%', 'vh', 'vw'];
+    if (units.some(unit => value.endsWith(unit))) {
+      return value;
+    } else if (typeof size === 'number') {
+      return `${value}px`;
+    }
+    return '';
+  };
   const styles = `
 		${isEmptyFamily ? '' : `font-family: '${fontFamily}', ${fontCategory};`}
 		${isValidCSS('font-weight', fontWeight)}
-		${isValidCSS('font-size', desktopFontSize ? `${desktopFontSize}px` : '')}
+		${isValidCSS('font-size', checkUnit(desktopFontSize))}
 		${isValidCSS('font-style', fontStyle)}
 		${isValidCSS('text-transform', textTransform)}
 		${isValidCSS('text-decoration', textDecoration)}
@@ -990,14 +1032,14 @@ const getTypoCSS = (selector, typo, isFamily = true) => {
     styles: `${selector}{
 			${styles}
 		}
-		${_data__WEBPACK_IMPORTED_MODULE_6__.tabBreakpoint} {
+		${_data__WEBPACK_IMPORTED_MODULE_7__.tabBreakpoint} {
 			${selector}{
-				${isValidCSS('font-size', tabletFontSize ? `${tabletFontSize}px` : '')}
+				${isValidCSS('font-size', checkUnit(tabletFontSize))}
 			}
 		}
-		${_data__WEBPACK_IMPORTED_MODULE_6__.mobileBreakpoint} {
+		${_data__WEBPACK_IMPORTED_MODULE_7__.mobileBreakpoint} {
 			${selector}{
-				${isValidCSS('font-size', mobileFontSize ? `${mobileFontSize}px` : '')}
+				${isValidCSS('font-size', checkUnit(mobileFontSize))}
 			}
 		}`.replace(/\s+/g, ' ').trim()
   };
@@ -1017,20 +1059,23 @@ const getBoxCSS = val => {
 // Murad Wahid
 const getGradientCSS = gradient => {
   const {
-    type,
-    radialType,
-    colors,
-    centerPositions,
-    angel
+    type = 'linear',
+    radialType = 'ellipse',
+    colors = [],
+    centerPositions = {
+      x: 0,
+      y: 0
+    },
+    angel = 0
   } = gradient || {};
-  if (gradient) {
+  if ((0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(gradient)) {
     const gradientColors = colors?.map(({
       color,
       position
     }) => `${color} ${position}%`);
     const liner = `linear-gradient(${angel}deg, ${gradientColors})`;
     const radial = `radial-gradient(${radialType} at ${centerPositions?.x}% ${centerPositions?.y}%,${gradientColors})`;
-    return isValidCSS('background', type === 'linear' ? liner : radial);
+    return isValidCSS('background', type === 'radial' ? radial : liner);
   }
   return '';
 };
@@ -1044,7 +1089,7 @@ const getImagePosition = img => {
     size = 'cover',
     customSize = '0px'
   } = img || {};
-  const cd = v => 'initial' !== v || (0,_common__WEBPACK_IMPORTED_MODULE_7__.isExist)(v);
+  const cd = v => 'initial' !== v || (0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(v);
   return `
 		${cd(position) ? `background-position: ${'custom' === position ? `${xPosition} ${yPosition}` : position};` : ''}
 		${attachment && cd(attachment) ? `background-attachment: ${attachment};` : ''}
@@ -1055,9 +1100,9 @@ const getImagePosition = img => {
 const getImageCSS = (img = {}) => {
   if (img) {
     return {
-      desktop: (0,_common__WEBPACK_IMPORTED_MODULE_7__.isExist)(img.url) ? `background-image: url(${img.url}); ${getImagePosition(img?.desktop)}` : '',
-      tablet: (0,_common__WEBPACK_IMPORTED_MODULE_7__.isExist)(img.url) ? getImagePosition(img?.tablet) : '',
-      mobile: (0,_common__WEBPACK_IMPORTED_MODULE_7__.isExist)(img.url) ? getImagePosition(img?.mobile) : ''
+      desktop: (0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(img.url) ? `background-image: url(${img.url}); ${getImagePosition(img?.desktop)}` : '',
+      tablet: (0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(img.url) ? getImagePosition(img?.tablet) : '',
+      mobile: (0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(img.url) ? getImagePosition(img?.mobile) : ''
     };
   }
   return '';
@@ -1110,13 +1155,13 @@ const getAdvBGCSS = (background, selector, isHover = false) => {
 			${bgCSS}
 		}` : ''}
 
-		${tablet ? `${_data__WEBPACK_IMPORTED_MODULE_6__.tabBreakpoint} {
+		${tablet ? `${_data__WEBPACK_IMPORTED_MODULE_7__.tabBreakpoint} {
 			${sl}{
 				${tablet}
 			}
 		}` : ''}
 
-		${mobile ? `${_data__WEBPACK_IMPORTED_MODULE_6__.mobileBreakpoint} {
+		${mobile ? `${_data__WEBPACK_IMPORTED_MODULE_7__.mobileBreakpoint} {
 			${sl}{
 				${mobile}
 			}
@@ -1134,16 +1179,31 @@ const getOverlayCSS = (overlay, selector, isHover = false) => {
     brightness = 100,
     contrast = 100,
     saturation = 100,
-    hue = 0
+    hue = 0,
+    position = {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0
+    },
+    zIndex = -1
   } = overlay || {};
   const filterCSSValue = `${100 !== brightness ? `brightness(${brightness}%)` : ''} ${100 !== contrast ? `contrast(${contrast}%)` : ''} ${100 !== saturation ? `saturate(${saturation}%)` : ''} ${0 !== blur ? `blur(${blur}px)` : ''} ${0 !== hue ? `hue-rotate(${hue}deg)` : ''}`;
   const filterCSS = `${filter}: ${filter ? filterCSSValue : ''}; -webkit-${filter}: ${filter ? filterCSSValue : ''};`;
   const sl = isHover ? `${selector}:hover::after` : `${selector}::after`;
   return isEnabled ? `
+		${selector}{
+			position:relative;
+			z-index:1;
+		}
 		${selector}::after{
 			content: '';
 			position: absolute;
-			inset: 0;
+			top:${(0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(position.top) ? position.top : 0};
+			right:${(0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(position.right) ? position.right : 0};
+			bottom:${(0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(position.bottom) ? position.bottom : 0};
+			left:${(0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(position.left) ? position.left : 0};
+			z-index:${zIndex};
 		}
 		${getAdvBGCSS(colors, sl, false)}
 		${sl}{
@@ -1155,7 +1215,7 @@ const getOverlayCSS = (overlay, selector, isHover = false) => {
 };
 const getTransformCSS = (transform, selector, isHover = false) => {
   const generateTransformCSS = (value, device = 'desktop') => {
-    if (!(0,_common__WEBPACK_IMPORTED_MODULE_7__.isExist)(value)) return '';
+    if (!(0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(value)) return '';
     const {
       skew,
       scale,
@@ -1172,36 +1232,36 @@ const getTransformCSS = (transform, selector, isHover = false) => {
     } = scale || {};
     const transforms = [];
     //skew
-    if ((0,_common__WEBPACK_IMPORTED_MODULE_7__.isExist)(skew)) {
-      if ((0,_common__WEBPACK_IMPORTED_MODULE_7__.isExist)(skew?.[device]?.x)) transforms.push(`skewX(${skew[device].x}deg)`);
-      if ((0,_common__WEBPACK_IMPORTED_MODULE_7__.isExist)(skew?.[device]?.y)) transforms.push(`skewY(${skew[device].y}deg)`);
+    if ((0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(skew)) {
+      if ((0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(skew?.[device]?.x)) transforms.push(`skewX(${skew[device].x}deg)`);
+      if ((0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(skew?.[device]?.y)) transforms.push(`skewY(${skew[device].y}deg)`);
     }
     //scale
     if (isProportion) {
-      if ((0,_common__WEBPACK_IMPORTED_MODULE_7__.isExist)(scale?.[device]?.scale)) transforms.push(`scale(${scale[device].scale})`);
+      if ((0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(scale?.[device]?.scale)) transforms.push(`scale(${scale[device].scale})`);
     } else {
-      if ((0,_common__WEBPACK_IMPORTED_MODULE_7__.isExist)(scale?.[device]?.x)) transforms.push(`scaleX(${scale[device].x})`);
-      if ((0,_common__WEBPACK_IMPORTED_MODULE_7__.isExist)(scale?.[device]?.y)) transforms.push(`scaleY(${scale[device].y})`);
+      if ((0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(scale?.[device]?.x)) transforms.push(`scaleX(${scale[device].x})`);
+      if ((0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(scale?.[device]?.y)) transforms.push(`scaleY(${scale[device].y})`);
     }
 
     //rotate
-    if ((0,_common__WEBPACK_IMPORTED_MODULE_7__.isExist)(rotate)) {
-      if ((0,_common__WEBPACK_IMPORTED_MODULE_7__.isExist)(rotate?.[device]?.z)) transforms.push(`rotateZ(${rotate[device].z}deg)`);
+    if ((0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(rotate)) {
+      if ((0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(rotate?.[device]?.z)) transforms.push(`rotateZ(${rotate[device].z}deg)`);
       if (threeDRotate) {
-        if ((0,_common__WEBPACK_IMPORTED_MODULE_7__.isExist)(rotate?.[device]?.x)) transforms.push(`rotateX(${rotate[device].x}deg)`);
-        if ((0,_common__WEBPACK_IMPORTED_MODULE_7__.isExist)(rotate?.[device]?.y)) transforms.push(`rotateY(${rotate[device].y}deg)`);
+        if ((0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(rotate?.[device]?.x)) transforms.push(`rotateX(${rotate[device].x}deg)`);
+        if ((0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(rotate?.[device]?.y)) transforms.push(`rotateY(${rotate[device].y}deg)`);
       }
     }
 
     //offset
-    if ((0,_common__WEBPACK_IMPORTED_MODULE_7__.isExist)(offset)) {
-      if ((0,_common__WEBPACK_IMPORTED_MODULE_7__.isExist)(offset?.[device]?.x)) transforms.push(`translateX(${offset[device].x})`);
-      if ((0,_common__WEBPACK_IMPORTED_MODULE_7__.isExist)(offset?.[device]?.y)) transforms.push(`translateY(${offset[device].y})`);
+    if ((0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(offset)) {
+      if ((0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(offset?.[device]?.x)) transforms.push(`translateX(${offset[device].x})`);
+      if ((0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(offset?.[device]?.y)) transforms.push(`translateY(${offset[device].y})`);
     }
 
     //flip
-    if ((0,_common__WEBPACK_IMPORTED_MODULE_7__.isExist)(flipX)) transforms.push(flipX ? 'scaleX(-1)' : '');
-    if ((0,_common__WEBPACK_IMPORTED_MODULE_7__.isExist)(flipY)) transforms.push(flipY ? 'scaleY(-1)' : '');
+    if ((0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(flipX)) transforms.push(flipX ? 'scaleX(-1)' : '');
+    if ((0,_common__WEBPACK_IMPORTED_MODULE_6__.isExist)(flipY)) transforms.push(flipY ? 'scaleY(-1)' : '');
     if (transforms.length === 0) return '';
     return isValidCSS('transform', transforms.join(' '));
   };
@@ -1212,12 +1272,12 @@ const getTransformCSS = (transform, selector, isHover = false) => {
 		${sl} {
 			${generateTransformCSS(transform, 'desktop')}
 		}
-		${_data__WEBPACK_IMPORTED_MODULE_6__.tabBreakpoint}{
+		${_data__WEBPACK_IMPORTED_MODULE_7__.tabBreakpoint}{
 			${sl} {
 				${generateTransformCSS(transform, 'tablet')}
 			}
 		}
-		${_data__WEBPACK_IMPORTED_MODULE_6__.mobileBreakpoint}{
+		${_data__WEBPACK_IMPORTED_MODULE_7__.mobileBreakpoint}{
 			${sl} {
 				${generateTransformCSS(transform, 'mobile')}
 			}

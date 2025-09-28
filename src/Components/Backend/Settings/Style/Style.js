@@ -2,16 +2,17 @@ import { __ } from '@wordpress/i18n';
 import { PanelBody, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 import { Background, BoxControl, ColorControl, Typography } from "../../../../../../bpl-tools/Components";
 import { updateData } from '../../../../../../bpl-tools/utils/functions';
+import { BControlPro } from '../../../../../../bpl-tools/ProControls';
 
 
-const Style = ({ attributes, setAttributes }) => {
+const Style = ({ attributes, setAttributes, isPremium, setIsProModalOpen }) => {
   const { Styles = {} } = attributes;
 
   const { audioContainerDiv, headingtitle, actorNames, audioTime, progressStyle, controlBtn, playerStyle } = Styles;
 
   //const { Bar, Fill } = progressStyle;
+  const premiumProps = { isPremium, setIsProModalOpen };
 
-  console.log('div padding', Style?.audioContainerDiv?.padding)
 
   return (
     <>
@@ -23,12 +24,21 @@ const Style = ({ attributes, setAttributes }) => {
             Styles: updateData(Styles, v, 'audioContainerDiv', 'bg')
           })}
         />
-        <BoxControl
+        {/* <BoxControl
           label='Padding'
           values={audioContainerDiv?.padding}
           onChange={(v) => setAttributes({
             Styles: updateData(Styles, v, 'audioContainerDiv', 'padding')
           })}
+        /> */}
+        <BControlPro
+          label='Padding'
+          values={audioContainerDiv?.padding}
+          onChange={(v) => setAttributes({
+            Styles: updateData(Styles, v, 'audioContainerDiv', 'padding')
+          })}
+          Component={BoxControl}
+          {...premiumProps}
         />
       </PanelBody>
       <PanelBody className='bPlPanelBody' title={__('Audio Header Style', 'b-blocks')} initialOpen={false}>
@@ -40,12 +50,21 @@ const Style = ({ attributes, setAttributes }) => {
             Styles: updateData(Styles, v, 'headingtitle', 'typo')
           })}
         />
-        <ColorControl
+        {/* <ColorControl
           label='Title Color'
           value={headingtitle?.colors}
           onChange={(v) => setAttributes({
             Styles: updateData(Styles, v, 'headingtitle', 'colors')
           })}
+        /> */}
+        <BControlPro
+          label='Title Color'
+          value={headingtitle?.colors}
+          onChange={(v) => setAttributes({
+            Styles: updateData(Styles, v, 'headingtitle', 'colors')
+          })}
+          Component={ColorControl}
+          {...premiumProps}
         />
         <BoxControl
           label="Title Margin"

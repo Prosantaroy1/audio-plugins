@@ -7,22 +7,26 @@ import { blocks, generalStyleTabs } from '../../../utils/options';
 import General from './General/General';
 import Style from './Style/Style';
 import { BplBlockPreview } from '../../../../../bpl-tools/Components';
+import { compose } from '@wordpress/compose';
+import { withSelect } from '@wordpress/data';
+import { AboutProModal } from "../../../../../bpl-tools/ProControls";
+import { useState } from 'react';
 
-const Settings = ({ attributes, setAttributes, clientId }) => {
+
+const Settings = ({ attributes, setAttributes, clientId, isPremium, siteUrl }) => {
 	const { alignment, theme } = attributes;
+
+	const [isProModalOpen, setIsProModalOpen] = useState(false);
+	const siteLocation = `${siteUrl}/wp-admin/edit.php?post_type=book&page=audio_player_Dashboard#/pricing`;
 
 	return <>
 		<InspectorControls>
-			<div className='bBlocksInspectorInfo'>
-				Need more block like this? Checkout the bundle ➡ <a href='https://wordpress.org/plugins/b-blocks' target='_blank' rel='noopener noreferrer'>B Blocks</a>
-			</div>
-
 			<TabPanel className='bPlTabPanel wp-block-b-blocks-test-purpose' activeClass='activeTab' tabs={generalStyleTabs} onSelect={tabController}>
 				{
 					tab => <>
-						{'general' === tab.name && <General attributes={attributes} setAttributes={setAttributes} />}
+						{'general' === tab.name && <General attributes={attributes} isPremium={isPremium} setAttributes={setAttributes} />}
 
-						{'style' === tab.name && <Style attributes={attributes} setAttributes={setAttributes} />}
+						{'style' === tab.name && <Style attributes={attributes} isPremium={isPremium} setAttributes={setAttributes} setIsProModalOpen={setIsProModalOpen} />}
 					</>
 				}
 			</TabPanel>
@@ -44,6 +48,25 @@ const Settings = ({ attributes, setAttributes, clientId }) => {
 			/>
 
 		</BlockControls>
+		<AboutProModal
+			isProModalOpen={isProModalOpen}
+			setIsProModalOpen={setIsProModalOpen}
+			link={siteLocation}
+		>
+			<li>
+				<strong>
+					{__("Layout Flexible design: ", "services-card")}
+				</strong>
+				{__("Service Card Icon text description Design ", "services-card")}
+			</li>
+		</AboutProModal>
 	</>;
 };
-export default Settings;
+
+export default compose(
+	withSelect((select) => {
+		return {
+			siteUrl: select('core').getSite()?.url,
+		};
+	})
+)(Settings);

@@ -4,7 +4,7 @@ Donate link:		https://gum.co/wpdonate/
 Tags:				block, key1, key2, key3, key4
 Requires at least:	6.3+
 Tested up to:		6.5.5
-Stable tag:			1.0.0
+Stable tag:			1.0.2
 Requires PHP:		7.2
 License:			GPLv3 or later
 License URI:		http://www.gnu.org/licenses/gpl-3.0.html
@@ -111,6 +111,18 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 1. Screenshot 1
 2. Screenshot 2
 
+
+== Changelog ==
+
+= 1.0.2 =
+* Update User Perforation
+
+== Changelog ==
+
+== Changelog ==
+
+= 1.0.1 =
+* Update Premium version
 
 == Changelog ==
 

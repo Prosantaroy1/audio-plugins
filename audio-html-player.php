@@ -2,12 +2,14 @@
 /**
  * Plugin Name: Audio Html Player
  * Description: Short description of the plugin
- * Version: 1.0.0
+ * Version: 1.0.2
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain: audio-html-player
+ *  * @fs_premium_only /freemius
+ * * @fs_free_only /freemius-lite
  */
 
 // ABS PATH
@@ -17,12 +19,20 @@ if (!defined('ABSPATH')) {
 
 
 if (function_exists('ahp_fs')) {
-	ahp_fs()->set_basename(true, __FILE__);
+	register_activation_hook(__FILE__, function () {
+		if (is_plugin_active('audio-html-player/audio-html-player')) {
+			deactivate_plugins('audio-html-player/audio-html-player');
+		}
+		if (is_plugin_active('audio-html-player-premium/audio-html-player')) {
+			deactivate_plugins('audio-html-player-premium/audio-html-player');
+		}
+	});
 } else {
 	// Constant
-	define('AudioPP_VERSION', isset($_SERVER['HTTP_HOST']) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.0.0');
+	define('AudioPP_VERSION', isset($_SERVER['HTTP_HOST']) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.0.2');
 	define('AudioPP_DIR_URL', plugin_dir_url(__FILE__));
 	define('AudioPP_DIR_PATH', plugin_dir_path(__FILE__));
+	//
 	define('AudioPP_HAS_PRO', file_exists(dirname(__FILE__) . '/freemius/start.php'));
 
 	if (!function_exists('ahp_fs')) {
@@ -77,7 +87,7 @@ if (function_exists('ahp_fs')) {
 	if (!class_exists('AudioPPPlugin')) {
 		class AudioPPPlugin
 		{
-			function __construct()
+			public function __construct()
 			{
 				add_action('init', [$this, 'onInit'], 5);
 				add_shortcode('book', [$this, 'psb_product_spotshortcode']);
@@ -183,6 +193,43 @@ if (function_exists('ahp_fs')) {
 			}
 
 
+			//admin
+			function add_audio_player_submenu()
+			{
+				add_submenu_page(
+					'edit.php?post_type=book',
+					'Get Helper',
+					'Get Helper',
+					'manage_options',
+					'audio_player_Dashboard',
+					[$this, 'audio_player_Dashboard_page'],
+
+				);
+			}
+
+			// Dashboard Menu
+			function audio_player_Dashboard_page()
+			{
+				?>
+				<div id='AudioDashboard' data-info='<?php echo esc_attr(wp_json_encode([
+					'version' => AudioPP_VERSION,
+					'isPremium' => audioIsPremium(),
+					'hasPro' => AudioPP_HAS_PRO,
+				])); ?>'></div>
+				<?php
+			}
+			function adminEnqueueScripts($hook)
+			{
+
+				if ('book_page_audio_player_Dashboard' === $hook) {
+					wp_enqueue_script('audio-admin-script', AudioPP_DIR_URL . './build/admin-dashboard.js', ['react', 'react-dom', 'wp-data', "wp-api", "wp-util", "wp-i18n", "lodash"], AudioPP_VERSION, true);
+					wp_enqueue_style('audio-admin-style', AudioPP_DIR_URL . './build/admin-dashboard.css', false, AudioPP_VERSION);
+					wp_set_script_translations('audio-admin-dashboard', 'audio-html-player', AudioPP_DIR_PATH . 'languages');
+
+				}
+			}
+
+
 			function set_custom_edit_book_columns($columns)
 			{
 				unset($columns['date']);
@@ -260,41 +307,7 @@ if (function_exists('ahp_fs')) {
 				}
 			}
 
-			//admin
-			function add_audio_player_submenu()
-			{
-				add_submenu_page(
-					'edit.php?post_type=book',
-					'Get Helper',
-					'Get Helper',
-					'manage_options',
-					'audio_player_Dashboard',
-					[$this, 'audio_player_Dashboard_page'],
-					
-				);
-			}
 
-			// Dashboard Menu
-			function audio_player_Dashboard_page()
-			{
-				?>
-				<div id='AudioDashboard' data-info='<?php echo esc_attr(wp_json_encode([
-					'version' => AudioPP_VERSION,
-					'isPremium' => audioIsPremium(),
-					'hasPro' => AudioPP_HAS_PRO,
-				])); ?>'></div>
-				<?php
-			}
-			function adminEnqueueScripts($hook)
-			{
-
-				if ('book_page_audio_player_Dashboard' === $hook) {
-					wp_enqueue_script('audio-admin-script', AudioPP_DIR_URL . './build/admin-dashboard.js', ['react', 'react-dom', 'wp-data', "wp-api", "wp-util", "wp-i18n", "lodash"], AudioPP_VERSION, true);
-					wp_enqueue_style('audio-admin-style', AudioPP_DIR_URL . './build/admin-dashboard.css', false, AudioPP_VERSION);
-					wp_set_script_translations('audio-admin-dashboard', 'audio-html-player', AudioPP_DIR_PATH . 'languages');
-
-				}
-			}
 
 		}
 		new AudioPPPlugin();
